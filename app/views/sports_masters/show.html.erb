@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>id:</strong>
+  <%= @sports_master.id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @sports_master.name %>
+</p>
+
+<p>
+<% if @sports_master.indoor %>
+  <p>
+    <strong>Indoor:</strong>
+    <%= @sports_master.indoor.inspect %>
+  </p>
+<% end %>
+
+<% if @sports_master.outdoor %>
+  <p>
+    <strong>Outdoor:</strong>
+    <%= @sports_master.outdoor.inspect %>
+  </p>
+<% end %>
+
+
+<%= link_to 'Edit', edit_sports_master_path(@sports_master) %> |
+<%= link_to 'Back', sports_masters_path %>

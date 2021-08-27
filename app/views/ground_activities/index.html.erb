@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ground Activities</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ground-id</th>
+      <th>Activity-id</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ground_activities.each do |ground_activity| %>
+      <tr>
+        <td><%= reservation.ground_id %></td>
+        <td><%= reservation.sports_master_id %></td>
+        <td><%= link_to 'Show', ground_activity %></td>
+        <td><%= link_to 'Edit', edit_ground_activity_path(ground_activity) %></td>
+        <td><%= link_to 'Destroy', ground_activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ground Activity', new_ground_activity_path %>

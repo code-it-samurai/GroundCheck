@@ -1,0 +1,27 @@
+<%= form_with(model: ground_sports_master) do |form| %>
+  <% if ground_sports_master.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ground_sports_master.errors.count, "error") %> prohibited this ground_sports_master from being saved:</h2>
+
+      <ul>
+        <% ground_sports_master.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :ground_id %>
+    <%= form.number_field :ground_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sports_master_id %>
+    <%= form.number_field :sports_master_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

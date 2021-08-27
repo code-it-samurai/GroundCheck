@@ -1,0 +1,28 @@
+<%= form_with(model: sports_master) do |form| %>
+  <% if sports_master.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(sports_master.errors.count, "error") %> prohibited this sports_master from being saved:</h2>
+
+      <ul>
+        <% sports_master.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="field">
+    <% ['indoor', 'outdoor'].each do |type|%>
+      <%= form.radio_button :type, type %>
+      <span><%= type %></span>
+    <% end %>
+  </div> 
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

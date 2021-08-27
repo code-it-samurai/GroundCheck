@@ -1,0 +1,14 @@
+<%= render 'pages/header'%>
+
+
+<div class="new-ground-body">
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class=" main-title">CREATE A NEW GROUND</h1>
+      <p class="lead-title">Create your own ground's profile by inserting required details</p>
+    </div>
+  </div>
+	<%= render 'form', ground: @ground %>
+</div>
+
+<%= link_to 'Back', grounds_path %>

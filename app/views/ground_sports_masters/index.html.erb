@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ground Sports Masters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ground</th>
+      <th>Sports master</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ground_sports_masters.each do |ground_sports_master| %>
+      <tr>
+        <td><%= ground_sports_master.ground_id %></td>
+        <td><%= ground_sports_master.sports_master_id %></td>
+        <td><%= link_to 'Show', ground_sports_master %></td>
+        <td><%= link_to 'Edit', edit_ground_sports_master_path(ground_sports_master) %></td>
+        <td><%= link_to 'Destroy', ground_sports_master, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ground Sports Master', new_ground_sports_master_path %>

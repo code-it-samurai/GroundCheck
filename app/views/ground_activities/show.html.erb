@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>ground:</strong>
+  <%= @reservation.ground_id %>
+</p>
+
+<p>
+  <strong>Activity:</strong>
+  <%= @reservation.sports_master_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_ground_activity_path(@ground_activity) %> |
+<%= link_to 'Back', ground_activities_path %>

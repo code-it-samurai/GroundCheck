@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Grounds</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Ground name</th>
+      <th>User</th>
+      <th>Ground pincode</th>
+      <th>Business email</th>
+      <th>Business phone</th>
+      <th>Cost per hour</th>
+      <th>Opening time</th>
+      <th>Closing time</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @grounds.each do |ground| %>
+      <tr>
+        <td><%= ground.id %></td>
+        <td><%= ground.ground_name %></td>
+        <td><%= ground.user_id %></td>
+        <td><%= ground.ground_pincode %></td>
+        <td><%= ground.business_email %></td>
+        <td><%= ground.business_phone %></td>
+        <td><%= ground.cost_per_hour %></td>
+        <td><%= ground.opening_time %></td>
+        <td><%= ground.closing_time %></td>
+        <td><%= link_to 'Show', ground %></td>
+        <td><%= link_to 'Edit', edit_ground_path(ground) %></td>
+        <td><%= link_to 'Destroy', ground, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ground', new_ground_path %>

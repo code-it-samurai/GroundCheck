@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @reservation.user_id %>
+</p>
+
+<p>
+  <strong>Ground:</strong>
+  <%= @reservation.ground_id %>
+</p>
+
+<p>
+  <strong>Selected activity:</strong>
+  <%= @reservation.sports_master_id %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @reservation.date %>
+</p>
+
+<p>
+  <strong>Starting time:</strong>
+  <%= @reservation.starting_time %>
+</p>
+
+<p>
+  <strong>Finishing time:</strong>
+  <%= @reservation.finishing_time %>
+</p>
+
+<%= link_to 'Edit', edit_reservation_path(@reservation) %> |
+<%= link_to 'Back', reservations_path %>

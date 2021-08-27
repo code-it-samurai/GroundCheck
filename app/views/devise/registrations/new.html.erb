@@ -1,0 +1,46 @@
+<div class="signup-holder">
+  <%= render 'pages/guestnave' %>
+  <div class="signup-body">
+    <div class="jumbotron jumbotron-fluid w-100">
+      <div class="container">
+        <h1 class=" main-title">SIGN UP</h1>
+        <p class="lead-title">Happy to have you on board, lets get started.</p>
+      </div>
+    </div>
+    <div class="signup-form-holder">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <div class="signup-textboxes-holder"> 
+          <div class=" signup-textboxes-holder">
+            <div class="container signup-container" >
+              <div class="signup-textbox-holder">
+                <div class="new-ground-tb-lables">Email:</div>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email",ondrop:"return false;", onpaste:"return false;", onkeypress:"return (event.charCode>=97 && event.charCode<=122) || (event.charCode>=48 && event.charCode<=57) || event.charCode== 64 || event.charCode== 46" %>
+              </div>
+            <div class="signup-textbox-holder">
+              <div class="new-ground-tb-lables">
+                Password:
+              </div>
+              <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <% end %><br />
+                <%= f.password_field :password, autocomplete: "new-password" %>
+            </div>
+            <div class="signup-textbox-holder">
+              <div class="new-ground-tb-lables">
+                Password:
+              </div>
+                <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+            </div>
+            <div class="submit-div">
+              <%= f.submit "SIGN UP", class: "btn btn-success"%>
+            </div>
+            <%= render "devise/shared/links" %>
+          </div>
+        </div>
+      </div>
+      <% end -%>
+    </div>  
+  </div>
+</div>
+
