@@ -1,0 +1,138 @@
+	<div class= "home-container" id="home">
+
+	<% if user_signed_in? %>
+	<%= render 'pages/header'%>
+		<div class="home-body">
+		<div class="welcome-note-container">
+			<span class="home-welcome-note">
+				Welcome <%= current_user.name %>
+			</span>
+		</div>
+		<% if notice %>
+			<div class="welcome-note-container">
+				<div class="home-welcome-note">
+					<%= notice %>
+				</div>
+				<div class="pointer">
+				</div>
+			</div>
+		<% elsif alert %>
+			<div class="welcome-note-container">
+				<span class="home-welcome-note">
+					<%= alert %>
+				</span>
+				<div class="pointer">
+				</div>
+			</div>
+		<% end %>
+		<div class="jumbotron jumbotron-fluid">
+		  <div class="container">
+		    <h1 class=" main-title">GROUNDCHECK</h1>
+		    <p class="lead-title">Welcome <%= current_user.name %>, make reservations and stay at the top of your game.</p>
+		  </div>
+		</div>
+			<div class="reservations-viewer jumbotron jumbotron-fluid">
+				<div class="container justify-center">
+					<h2 class="secondary-title">RESERVATIONS</h2>
+					<!-- <h1><%= @current_user_reservations.inspect %></h1> -->
+					<div class="reservations-holder">
+					<% if @current_user_reservations %>
+						<% @current_user_reservations.each do |reservation| %>
+								<div class="home-reservation-post">
+									<div class="home-reservation-post-info-holder">
+										<div class="home-reservation-ground-name">
+											<% if reservation[:ground_name].length > 15 %>
+												<%= reservation[:ground_name][0..14]+".." %>
+											<%else%>
+												<%= reservation[:ground_name]%>
+											<%end%>
+										</div>
+										<div class="home-reservation-date">
+											<%= reservation[:reserved_activity] %>
+										</div>
+										<div class="home-reservation-post-datetime-holder">
+											<div class="home-reservation-date"><%= reservation[:reservation_date] %></div> 
+											<div class="home-reservation-time"><%= reservation[:startingtime] %></div>	
+										</div>	
+									</div>
+									<div>
+										<!-- <%= link_to 'CANCEL', reservation[:obj], method: :delete, class: "btn btn-danger cancel-btn", data: { confirm: 'Are you sure?' } %> -->
+											<%= link_to image_tag("delete.png",height: "25px", color:"orange"), cancelreservation_path(id: reservation[:obj].id), method: :post, class: "want-tooltip cancel-btn res-cancel-btn", data: { confirm: 'Are you sure?' }, "title":"CANCEL" %>
+									</div>
+									<!-- image_tag("delete.png",height: "40px", color:"orange") -->
+								</div>
+						<% end %>
+					<% end %>
+					<% if @current_user_reservations != nil and @current_user_reservations.length == 0 %>
+						<p class="no-reservation-notice">
+							WOW, CURRENTLY YOU HAVE NO RESERVATIONS
+						</p>
+						<div class="submit-div">
+							<%= link_to "SHOW GROUNDS", groundresults_path, class: "btn btn-success cancel-btn" %>
+						</div>
+					<% end %>
+					</div>
+				</div>
+			</div>
+
+				
+			<div class="user-interest-holder  jumbotron jumbotron-fluid">
+				<div class="container">
+					<h3 class="secondary-title">YOUR INTERESTS</h3>
+
+					<div class="home-user-interests">
+						<% if @current_user_reservations %>
+							<% @current_user_interests.each do |interest| %> 
+								<div class="activity"><span><%= interest %></span></div>
+							<% end %> 
+						<% end %>
+					</div>
+				</div>
+			</div>
+		<% else %>
+			<div class="home-guest-main-div">
+				<%= render 'pages/guestnave'%>
+				
+				
+				<div class="home-guest-body">
+					<% if notice %>
+						<div class="welcome-note-container">
+							<div class="home-welcome-note">
+								<%= notice %>
+							</div>
+							<div class="pointer">
+							</div>
+						</div>
+					<% elsif alert %>
+						<div class="welcome-note-container">
+							<span class="home-welcome-note">
+								<%= alert %>
+							</span>
+							<div class="pointer">
+							</div>
+						</div>
+					<% end %>
+					<div class="jumbotron jumbotron-fluid">
+					  <div class="container">
+					    <h1 class=" main-title">GROUNDCHECK</h1>
+					    <p class="lead-title">
+					    	Welcome to GroundCheck, please sign up or sign in to use our services
+					    </p>
+					    <p>
+					    	<div class="submit-div" style="margin-top: 30px;">
+									<%= link_to "Sign In", new_user_session_path, class:"btn btn-success cancel-btn sign-up-in-btn"%>
+									<%= link_to "Sign Up",  new_user_registration_path, class:"btn btn-success cancel-btn sign-up-in-btn"%>
+								</div>	
+					    </p>
+					  </div>
+					</div>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+  	$('[data-toggle="tooltip"]').tooltip(); 
+	});
+</script>

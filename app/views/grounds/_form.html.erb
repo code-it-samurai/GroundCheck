@@ -1,0 +1,123 @@
+<div class="new-ground-holder">
+  <%= form_with(model: ground) do |form| %>
+    <% if ground.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(ground.errors.count, "error") %> prohibited this ground from being saved:</h2>
+        <ul>
+          <% ground.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <% if @ground.ground_name %>
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class=" main-title"><%= @ground.ground_name %></h1>
+          <p class="lead-title">Profile Edit</p>
+        </div>
+      </div>
+    <% end %>
+    <div class="new-ground-textboxes-holder"> 
+      <div class="textboxes-holder">
+        <div class="container">
+          <div class="tb-holder-title">Primary Info</div>
+          <div class="new-ground-textbox-holder">
+            <div class="new-ground-tb-lables">Ground Name</div>
+            <%= form.text_field :ground_name, class: "new-ground-profile-textbox" %>
+          </div>
+
+          <div class="new-ground-textbox-holder">
+            <div class="new-ground-tb-lables">
+              Ground Pincode
+            </div>
+            <%= form.number_field :ground_pincode, class: "new-ground-profile-textbox pincode-field",min:100000, max:999999, ondrop:"return false;", onpaste:"return false;", onkeypress:"return event.charCode>=48 && event.charCode<=57" %>
+          </div>
+
+          <div class="new-ground-textbox-holder">
+            <div class="new-ground-tb-lables">
+              Location
+            </div>
+            <%= form.text_area :location, class: "new-ground-profile-textbox" %>
+          </div>
+
+          <div class="new-ground-textbox-holder">
+            <div class="new-ground-tb-lables">
+              Cost Per Hour
+            </div>
+            <div class="currency-div">
+              <span class="currency-symbol-holder">₹</span>
+              <%= form.number_field :cost_per_hour, class: "new-ground-profile-textbox", min:0, max:1000, step:10, ondrop:"return false;", onpaste:"return false;", onkeypress:"return event.charCode>=48 && event.charCode<=57"%>
+            </div>
+          </div>
+
+          <div class="new-ground-textbox-holder">
+            <div class="new-ground-tb-lables">
+              Opening Time
+            </div>
+            <%= form.time_select :opening_time, {:default => {:hour => '06', :minute => '00'}} %>
+          </div>
+
+          <div class="new-ground-textbox-holder">
+            <div class="new-ground-tb-lables">
+              Closing Time
+            </div>
+            <%= form.time_select :closing_time, {:default => {:hour => '20', :minute => '00'}} %>
+          </div>  
+            <%= form.hidden_field :user_id, {value:current_user.id}%> 
+        </div>
+      </div> 
+      <div class="textboxes-holder">
+        <div class="container">
+          <div class="tb-holder-title">Contact Info</div>
+          <div class="new-ground-textbox-holder">
+            <div class="new-ground-tb-lables">
+              Business Email
+            </div>
+              <%= form.email_field :business_email, class: "new-ground-profile-textbox", ondrop:"return false;", onpaste:"return false;", onkeypress:"return (event.charCode>=97 && event.charCode<=122) || (event.charCode>=48 && event.charCode<=57) || event.charCode== 64 || event.charCode== 46" %>
+          </div>
+          <div class="new-ground-textbox-holder">
+            <div class="new-ground-tb-lables">
+              Business Phone
+            </div>
+            <%= form.text_field :business_phone, class: "new-ground-profile-textbox", ondrop:"return false;", onpaste:"return false;", onkeypress:"return event.charCode>=48 && event.charCode<=57" %>
+          </div>
+        </div>
+      </div>
+      <div class="textboxes-holder">
+        <div class="container">
+          <div class="tb-holder-title">Activities</div>
+          <div class="new-ground-interests">
+            <div class="new-ground-interests-holder">
+              <% if @all_activities %>
+                <% @all_activities.each do |activity| %>
+                  <% if @available_activities != nil %>
+                    <% if @available_activities.include?activity %>
+                      <div class="new-ground-interest-checkbox-holder">
+                        <%= form.check_box :sports_activities, {multiple: true, checked: true}, activity, false%>
+                        <div class="new-ground-interest-name"><%= activity %></div>
+                      </div> 
+                    <% else %>
+                      <div class="new-ground-interest-checkbox-holder">
+                        <%= form.check_box :sports_activities, {multiple: true}, activity, false%>
+                        <div class="new-ground-interest-name"><%= activity %></div>
+                      </div> 
+                    <% end %>
+                  <% else %>
+                    <div class="new-ground-interest-checkbox-holder">
+                      <%= form.check_box :sports_activities, {multiple: true}, activity, false%>
+                      <div class="new-ground-interest-name"><%= activity %></div>
+                    </div> 
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>  
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="submit-div">
+      <%= form.submit "SAVE", class: "btn-success btn submit-btn"%>
+    </div>
+  <% end %>  
+</div>

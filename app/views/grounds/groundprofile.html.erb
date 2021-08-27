@@ -1,0 +1,79 @@
+<div class="ground-profile-holder">
+	<%= render 'pages/header'%>
+	<div class="ground-profile">
+		<div class="ground-profile-title-holder">
+			<h3 class="home-reservation-title">GROUND</h3>
+		</div>
+		<div class="ground-profile-main">
+			<div class="ground-profile-name">
+				GROUNDNAME
+			</div>
+			<hr>
+			<div class="ground-profile-location">
+				<div class="smaller-title">Location:</div>
+				<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</p>
+			</div>
+			<hr>
+			<div class="ground-profile-contact">
+				<div class="smaller-title">Contact:</div>
+				<span>Email:</span><p>business@email.com</p>
+				<span>Phone:</span><p>8989898989</p>
+			</div>
+			<hr>
+			<div class="ground-profile-activities">
+				<div class="smaller-title">Activities:</div>
+				<div class="user-activities-holder">
+					<div class="ground-profile-interests">
+						<% ['activity', 'activity1', 'activity2', 'activity3'].each do |activity| %>
+							<div class="ground-activity"><%= activity %></div>
+						<% end %>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="ground-profile-cph">
+				<div class="smaller-title">Cost/Hour:</div><span>$$</span>
+			</div>
+			<hr>
+			<div class="ground-profile-reservation-form-holder">
+				<div class="smaller-title">Reservation:</div>
+				<%= form_with url: new_reservation_path, method: :post do |form| %>
+					<div>
+						<%= form.select(:selected_activity,['Cricket', 'Football', 'Basketball', 'Volleyball'], {:prompt => "Activity"}, {:class => "selected_activity" }) %>
+						<%= form.select(:date, @current_ground_available_dates, {:prompt => "Date"}, {:class => "selected_activity" }) %>
+						<%= form.select(:time_slot,['slot1', 'slot2', 'slot3'], {:prompt => "Time Slot"}, {:class => "selected_activity" }) %>	
+					</div>
+					<div class="submit-div">
+						<%= form.submit "SUBMIT", class:"btn btn-success"%>
+					</div>
+				<% end %>
+			</div>
+			<hr>
+			<div class="ground-profile-options">
+				<div class="option-div">
+					<%= button_tag "Options", onclick:"document.getElementById('mymodal').style.display='block'", class:"submit-button", class: "option-button" %>
+				</div>
+				<% if user_signed_in? %>
+					<% if current_user.ground_owner %>
+						<div id="mymodal" class="modal">
+						    <div class="my-modal-content animate-top">
+						      	<header class="w3-container w3-teal"> 
+							        <span onclick="document.getElementById('mymodal').style.display='none'" 
+							        class="w3-button w3-display-topright close-modal">&times;</span>
+							        <div class="options-title">OPTIONS</div>
+						      	</header>
+						      	<hr>
+						      	<div class="options-list">
+							    	<p class="options-list-a"><%= link_to "All Reservations", "link", class: "options-list-a" %></p>
+							    	<p class="options-list-a"><%= link_to "Ground Profile Edit", edit_ground_path(id:1), class: "options-list-a" %></p>
+							    	<p class="options-list-a"><%= link_to "Reservation Settings", "/ruby-book", class: "options-list-a" %></p>
+							    	<p class="options-list-a"><%= link_to "About", "/ruby-book", class: "options-list-a" %></p>
+						      	</div>
+						    </div>
+						</div>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

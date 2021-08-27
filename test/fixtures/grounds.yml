@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ground_name: MyString
+  ground_pincode: 1
+  business_email: MyString
+  business_phone: 1
+  cost_per_hour: 1.5
+  opening_time: 2021-08-12 00:21:24
+  closing_time: 2021-08-12 00:21:24
+
+two:
+  ground_name: MyString
+  ground_pincode: 1
+  business_email: MyString
+  business_phone: 1
+  cost_per_hour: 1.5
+  opening_time: 2021-08-12 00:21:24
+  closing_time: 2021-08-12 00:21:24

@@ -1,0 +1,38 @@
+<div >
+	<%= render 'pages/header'%>
+	<div class="groundresults-body">
+		
+		<div class="ground-results-viewer">
+			<div class="jumbotron jumbotron-fluid w-100">
+			  <div class="container">
+			  	<% searchword = @searchword %>
+			    <h1 class=" main-title">
+			    	Search result for "<%= searchword[0..15] %>"
+			    </h1>
+			    <p class="lead-title"><%= @results.length %> grounds matched to your search</p>
+			  </div>
+			</div>
+			<div class="ground-results-holder">
+				<% @results.each do |ground| %>
+					<div class="ground-result-post">
+						<div class="ground-result-post-title">
+							<% ground_name = ground.ground_name %>
+							<span><%= ground_name[0..15] %></span>
+						</div>
+						<% if ground.location %>
+							<div>
+								<div class="ground-result-post-subtitle">Location:</div>
+								<% ground_location = ground.location%>
+								<div><%= ground_location[0..50] %></div>
+							</div>
+						<% end %>
+						<div>
+							<%= link_to 'RESERVE', ground, class: "btn btn-success cancel-btn"%>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+

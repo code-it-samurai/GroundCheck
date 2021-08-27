@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @user_sports_master.user_id %>
+</p>
+
+<p>
+  <strong>Sports master:</strong>
+  <%= @user_sports_master.sports_master_id %>
+</p>
+
+<p>
+  <strong>Ground:</strong>
+  <%= @user_sports_master.ground_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_sports_master_path(@user_sports_master) %> |
+<%= link_to 'Back', user_sports_masters_path %>
