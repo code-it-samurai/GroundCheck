@@ -40,7 +40,7 @@ class ReservationsController < ApplicationController
     res_sports_master_id = sports_master_record.id
     res_cost = params[:cost]
     # COLLECTING ALL CONFIGURED PARAMS
-    res_params = {:date => processed_date, :user_id => res_user_id, :ground_id => res_ground_id, :sports_master_id => res_sports_master_id, :starting_time => processed_start_time, :finishing_time => processed_finish_time, :active => true, :cost => res_cost}
+    res_params = {:date => processed_date, :user_id => res_user_id, :ground_id => res_ground_id, :sports_master_id => res_sports_master_id, :starting_time => processed_start_time, :finishing_time => processed_finish_time, :cost => res_cost}
     @ground = Ground.find(res_ground_id)
     @reservation = Reservation.new(res_params)    
     # render plain: "#{res_params}"

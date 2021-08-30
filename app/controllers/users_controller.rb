@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
-
+  #hello world
   # GET /users or /users.json
   def index
     @users = User.all
@@ -13,7 +13,6 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
-    @all_activities = ['Football', 'Basket Ball', 'Cricket', 'Chess', 'Volley Ball', 'Table Tennis', 'Tennis', 'Badminton']
   end
 
   # GET /users/1/edit
@@ -26,7 +25,6 @@ class UsersController < ApplicationController
         @available_activities.append(activity_name)
       end
     end
-    @all_activities = ['Football', 'Basket Ball', 'Cricket', 'Chess', 'Volley Ball', 'Table Tennis', 'Tennis', 'Badminton']
   end
 
   # POST /users or /users.json
@@ -103,6 +101,11 @@ class UsersController < ApplicationController
           activity_name = SportsMaster.find(usm.sports_master_id).name
           @available_activities.append(activity_name)
         end
+      end
+      @all_activities = []
+      all_activity_objects = SportsMaster.all
+      all_activity_objects.each do |activity_obj|
+        @all_activities.append(activity_obj.name)
       end
     end
 

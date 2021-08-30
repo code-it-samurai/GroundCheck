@@ -77,7 +77,7 @@ class GroundsController < ApplicationController
     @all_active_activity_res = {}
     @allsportsmasters = SportsMaster.all
     @allsportsmasters.each do |sportsmasterobj|
-      reservations = Reservation.where(ground_id: @current_ground_id, active:true, sports_master_id:sportsmasterobj.id)
+      reservations = Reservation.where(ground_id: @current_ground_id, status: "active", sports_master_id:sportsmasterobj.id)
       slots_4_current_activity = []
       reservations.each do |myres|
         slots_4_current_activity.append("#{Time.at(myres.starting_time)} = #{Time.at(myres.finishing_time)}")
@@ -89,7 +89,7 @@ class GroundsController < ApplicationController
     
 
     # getting reserved slots for current ground
-    reservations = Reservation.where(ground_id: @current_ground_id, active:true)
+    reservations = Reservation.where(ground_id: @current_ground_id, status: "active")
     @reserve_times = []
     reservations.each do |reserve|
       @reserve_times.append("#{Time.at(reserve.starting_time)} = #{Time.at(reserve.finishing_time)}")

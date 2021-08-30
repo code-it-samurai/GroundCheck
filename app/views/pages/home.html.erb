@@ -34,11 +34,19 @@
 			<div class="reservations-viewer jumbotron jumbotron-fluid">
 				<div class="container justify-center">
 					<h2 class="secondary-title">RESERVATIONS</h2>
-					<!-- <h1><%= @current_user_reservations.inspect %></h1> -->
 					<div class="reservations-holder">
 					<% if @current_user_reservations %>
 						<% @current_user_reservations.each do |reservation| %>
-								<div class="home-reservation-post">
+							<% if reservation[:obj].status == "active" %>
+								<div class="home-reservation-post want-tooltip" title="Status: <%=reservation[:obj].status.upcase %>" style="background:#56776C">
+							<% elsif reservation[:obj].status == "hour_left" %>
+								<div class="home-reservation-post want-tooltip" title="<%=reservation[:obj].status.upcase %>" style="background:#22577A">
+							<% elsif reservation[:obj].status == "play_on" %>
+								<div class="home-reservation-post want-tooltip" title="<%=reservation[:obj].status.upcase %>" style="background:#F55C47">
+							<% elsif reservation[:obj].status == "checked_in" %>
+								<div class="home-reservation-post want-tooltip" title="<%=reservation[:obj].status.upcase %>" style="background:#50D890">
+							<% end %>
+								<!-- <div class="home-reservation-post"> -->
 									<div class="home-reservation-post-info-holder">
 										<div class="home-reservation-ground-name">
 											<% if reservation[:ground_name].length > 15 %>
@@ -59,7 +67,6 @@
 										<!-- <%= link_to 'CANCEL', reservation[:obj], method: :delete, class: "btn btn-danger cancel-btn", data: { confirm: 'Are you sure?' } %> -->
 											<%= link_to image_tag("delete.png",height: "25px", color:"orange"), cancelreservation_path(id: reservation[:obj].id), method: :post, class: "want-tooltip cancel-btn res-cancel-btn", data: { confirm: 'Are you sure?' }, "title":"CANCEL" %>
 									</div>
-									<!-- image_tag("delete.png",height: "40px", color:"orange") -->
 								</div>
 						<% end %>
 					<% end %>
@@ -67,9 +74,9 @@
 						<p class="no-reservation-notice">
 							WOW, CURRENTLY YOU HAVE NO RESERVATIONS
 						</p>
-						<div class="submit-div">
+						<!-- <div class="submit-div">
 							<%= link_to "SHOW GROUNDS", groundresults_path, class: "btn btn-success cancel-btn" %>
-						</div>
+						</div> -->
 					<% end %>
 					</div>
 				</div>
@@ -90,11 +97,11 @@
 				</div>
 			</div>
 		<% else %>
-			<div class="home-guest-main-div">
+			<div class="home-guest-main-div background-home-image">
 				<%= render 'pages/guestnave'%>
 				
 				
-				<div class="home-guest-body">
+				<div class="home-guest-body ">
 					<% if notice %>
 						<div class="welcome-note-container">
 							<div class="home-welcome-note">
@@ -112,16 +119,16 @@
 							</div>
 						</div>
 					<% end %>
-					<div class="jumbotron jumbotron-fluid">
+					<div class="jumbotron jumbotron-fluid " style="height:100%; background:transparent; color:white">
 					  <div class="container">
 					    <h1 class=" main-title">GROUNDCHECK</h1>
 					    <p class="lead-title">
 					    	Welcome to GroundCheck, please sign up or sign in to use our services
 					    </p>
 					    <p>
-					    	<div class="submit-div" style="margin-top: 30px;">
-									<%= link_to "Sign In", new_user_session_path, class:"btn btn-success cancel-btn sign-up-in-btn"%>
-									<%= link_to "Sign Up",  new_user_registration_path, class:"btn btn-success cancel-btn sign-up-in-btn"%>
+					    	<div class="submit-div" style="margin-top: 100px;">
+									<%= link_to "Sign In", new_user_session_path, class:" cancel-btn sign-in-btn"%>
+									<%= link_to "Sign Up",  new_user_registration_path, class:"cancel-btn sign-up-btn"%>
 								</div>	
 					    </p>
 					  </div>

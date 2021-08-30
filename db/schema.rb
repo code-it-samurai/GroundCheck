@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_27_043403) do
+ActiveRecord::Schema.define(version: 2021_08_28_025944) do
 
   create_table "ground_activities", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2021_08_27_043403) do
     t.date "date"
     t.integer "starting_time"
     t.integer "finishing_time"
-    t.boolean "active"
+    t.string "status", default: "active"
     t.integer "cost"
     t.index ["ground_id"], name: "index_reservations_on_ground_id"
     t.index ["sports_master_id"], name: "index_reservations_on_sports_master_id"
