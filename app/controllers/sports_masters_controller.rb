@@ -21,7 +21,6 @@ class SportsMastersController < ApplicationController
 
   # POST /sports_masters or /sports_masters.json
   def create
-    # render plain: "#{sports_master_params}"
     @sports_master = SportsMaster.new(sports_master_params)
     respond_to do |format|
       if @sports_master.save
@@ -36,7 +35,6 @@ class SportsMastersController < ApplicationController
 
   # PATCH/PUT /sports_masters/1 or /sports_masters/1.json
   def update
-    # render plain: "#{sports_master_params}"
     respond_to do |format|
       if @sports_master.update(sports_master_params)
         format.html { redirect_to @sports_master, notice: "Sports master was successfully updated." }

@@ -28,8 +28,11 @@
 		</div>
 		<%= link_to "Home", root_path %>
 		<%= link_to "Reservation History", reservation_history_path("history_for": "user") %>
-		<%= link_to "My Grounds", my_grounds_path %>
-		<%= link_to "Create Your Ground", new_ground_path %>
+		<% if !current_user.ground_owner %>
+			<%= link_to "Create Your Ground", new_ground_path %>
+		<% end %>
+		<!-- <span><%= link_to "My Grounds", my_grounds_path %></span> -->
+		
 		<%= link_to "Edit Your Profile", edit_user_path(current_user.id) %>
 		<%= link_to "About", about_path %>
 	</div>

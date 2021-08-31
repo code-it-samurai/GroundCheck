@@ -132,19 +132,7 @@ class GroundsController < ApplicationController
         @avail_times.append("#{processed_start_time} = #{processed_finish_time}")
         @all_activity_res[sportsmasterobj.name].append("#{processed_start_time} = #{processed_finish_time}")
       end
-      # @all_activity_res[sportsmasterobj.name] = @avail_times
     end
-
-    # removing available dates which match with reserved dates
-    # @match_times = []
-    # @reserve_times.each do |rt|
-    #   @avail_times.each do |at|
-    #     if rt == at
-    #       @match_times.append(rt)
-    #       @avail_times.delete(rt)
-    #     end
-    #   end
-    # end
 
     @all_conflict = []
     @allsportsmasters.each do |asm|
@@ -160,16 +148,6 @@ class GroundsController < ApplicationController
 
     # formatting the filtered out slots for display purpose
     @display_avail_times = []
-    # @avail_times.each do |at|
-    #   if at.include?"on"
-    #     @display_avail_times.append(at)
-    #     next
-    #   end
-    #   start, finish = at.split("=")
-    #   start = Time.parse(start).hour
-    #   finish = Time.parse(finish).hour
-    #   @display_avail_times.append("#{start}:00 to #{finish}:00")
-    # end
     @display_activity_res = {}
     @allsportsmasters = SportsMaster.all
     @allsportsmasters.each do |sportsmasterobj|
@@ -225,11 +203,12 @@ class GroundsController < ApplicationController
 
   # POST /grounds or /grounds.json
   def create
-    # render plain: "#{ground_params[:opening_time]}"
     @ground = Ground.new(ground_params)
     @ground.opening_time = Time.parse("#{@ground.opening_time.hour}:00")
     @ground.closing_time = Time.parse("#{@ground.closing_time.hour}:00")
-    # render plain: "#{@ground.opening_time}"
+    @ground_owner = User.find(ground_params[:user_id])
+    @ground_owner.ground_owner = true
+    @ground_owner.save
     @ground.save
     activities = params[:ground][:sports_activities]
     if activities 
@@ -257,10 +236,7 @@ class GroundsController < ApplicationController
 
   # PATCH/PUT /grounds/1 or /grounds/1.json
   def update
-    # @ground.update(ground_params)
     activities = params[:ground][:sports_activities]
-    
-    # render plain: "#{params}"
     # UPDATING JUNCITON TABLE
     GroundSportsMaster.where(ground_id: params[:id]).delete_all
     if activities 

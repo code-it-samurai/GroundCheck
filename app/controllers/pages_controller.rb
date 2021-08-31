@@ -6,6 +6,7 @@ class PagesController < ApplicationController
 			@current_user_id = current_user.id
 			@current_user_reservations = []
 			@current_user_interests = []
+
 			# FINDING AND STORING INTERESTS
 			UserSportsMaster.where(user_id: @current_user_id).find_each do |record|
 				activity_id = record[:sports_master_id]
@@ -14,57 +15,51 @@ class PagesController < ApplicationController
 				end
 			end
 
-			#If reservation is outdated change :status to "inactive"
-			# Reservation.where(user_id: @current_user_id).find_each do |res|
-			# 	res_finishing_time = Time.at(res.finishing_time)
-			# 	current_time = Time.now
-			# 	if(res_finishing_time > current_time and res.status != "inactive")
-			# 		finishing_time_minus_hour = Time.parse("#{res_finishing_time.hour - 1}:#{res_finishing_time.min} ")
-			# 		if(finishing_time_minus_hour < current_time )
-			# 			res_status = "hour_left"																		
-			# 		end
-			# 		ground_name = Ground.find(res[:ground_id]).ground_name
-			# 		activity_name = SportsMaster.find(res[:sports_master_id]).name
-			# 		@current_user_reservations.append({:obj => res,:ground_name => ground_name,:startingtime => Time.at(res[:starting_time]).to_time.strftime("%I:%M %p"),:reservation_date => res[:date].to_formatted_s(:short),:reserved_activity => activity_name})
-			# 	elsif 
-					
-			# 	else
-			# 		@current_res = Reservation.find(res.id)
-			# 		@current_res.update({:status => "inactive"})
-			# 	end
-			# 	@cdate = Time.now 
-			# 	mytoday = Date.today
-			# 	@currenttimehour = Time.parse("#{@cdate.hour + 1}:#{@cdate.min}:#{@cdate.sec}")
-			# 	# @cdate = @currenttimehour.date
-			# 	# @customdate = @cdate.change(hour:@currenttimehour, min:@cdate.min)
-			# end
-			# 5:36
+			# Reservation Status Update
 			Reservation.where(user_id: @current_user_id).find_each do |res|
+				@active_status = "active"
+				@inactive_status = "inactive"
+				@hour_left_status = "hour_left"
+				@play_on_status = "play_on"
+				@checked_in_status = "checked_in"
 				@current_date_time = Time.now
 				res_starting_time = Time.at(res.starting_time)
 				res_finishing_time = Time.at(res.finishing_time)
-				starting_time_minus_hour = Time.parse("#{res_starting_time.hour - 1}:#{res_starting_time.min} ")
-				if res_finishing_time < @current_date_time and (res.status == "active" or res.status == "hour_left" or res.status == "play_on" or res.status == "checked_in")
+				starting_time_minus_hour = Time.parse("#{res_starting_time.hour - 1}:#{res_starting_time.min} #{res_starting_time.strftime("%d/%m/%Y")}")
+				@comp_time = starting_time_minus_hour
+				if res_finishing_time < @current_date_time and (res.status == @active_status or res.status == @hour_left_status or res.status == @play_on_status or res.status == @checked_in_status)
 					deactivate_reservation = Reservation.find(res.id)
-					deactivate_reservation.update({:status => "inactive"})
-				elsif starting_time_minus_hour < @current_date_time and res.status == "active"
+					deactivate_reservation.update({:status => @inactive_status})
+				elsif starting_time_minus_hour < @current_date_time and res.status == @active_status
 					hour_left_reservation = Reservation.find(res.id)
-					hour_left_reservation.update({:status => "hour_left"})
+					hour_left_reservation.update({:status => @hour_left_status})
 					ground_name = Ground.find(res[:ground_id]).ground_name
 					activity_name = SportsMaster.find(res[:sports_master_id]).name
 					@current_user_reservations.append({:obj => res,:ground_name => ground_name,:startingtime => Time.at(res[:starting_time]).to_time.strftime("%I:%M %p"),:reservation_date => res[:date].to_formatted_s(:short),:reserved_activity => activity_name})
-				elsif res_starting_time < @current_date_time and res_finishing_time > @current_date_time and (res.status == "active" or res.status == "hour_left" or res.status == "checked_in")
+				elsif res_starting_time < @current_date_time and res_finishing_time > @current_date_time and (res.status == @active_status or res.status == @hour_left_status or res.status == @checked_in_status)
 					play_on_reservation = Reservation.find(res.id)										
-					play_on_reservation.update({:status => "play_on"})
+					play_on_reservation.update({:status => @play_on_status})
 					ground_name = Ground.find(res[:ground_id]).ground_name
 					activity_name = SportsMaster.find(res[:sports_master_id]).name
 					@current_user_reservations.append({:obj => res,:ground_name => ground_name,:startingtime => Time.at(res[:starting_time]).to_time.strftime("%I:%M %p"),:reservation_date => res[:date].to_formatted_s(:short),:reserved_activity => activity_name})
-				elsif res.status == "active" or res.status == "hour_left" or res.status == "play_on" or res.status == "checked_in"
+				elsif res.status == @active_status or res.status == @hour_left_status or res.status == @play_on_status or res.status == @checked_in_status
 					ground_name = Ground.find(res[:ground_id]).ground_name
 					activity_name = SportsMaster.find(res[:sports_master_id]).name
 					@current_user_reservations.append({:obj => res,:ground_name => ground_name,:startingtime => Time.at(res[:starting_time]).to_time.strftime("%I:%M %p"),:reservation_date => res[:date].to_formatted_s(:short),:reserved_activity => activity_name})					
 				end
-			end			
+			end	
+
+			if current_user.ground_owner
+				@owned_ground_reservations = []
+				@owned_ground = Ground.where(user_id: @current_user_id)[0]
+				Reservation.where(ground_id:@owned_ground[:id]).find_each do |rsg|
+					if(rsg.status != "inactive")
+						username = User.find(rsg.user_id).name
+						activity_name = SportsMaster.find(rsg[:sports_master_id]).name
+						@owned_ground_reservations.append({:obj => rsg,:username => username,:startingtime => Time.at(rsg[:starting_time]).strftime("%I:%M %p"), :finishingtime => Time.at(rsg[:finishing_time]).strftime("%I:%M %p"),:reservation_date => rsg[:date].strftime("%d/%m/%Y"),:reserved_activity => activity_name})					
+					end
+				end
+			end	
 		end
 	end
 
@@ -79,7 +74,7 @@ class PagesController < ApplicationController
 			@inactive_reservations_history = []
 			@current_user_id = current_user.id
 			Reservation.where(user_id: current_user.id).find_each do |reserve_history|
-				if reserve_history[:status] == "active"
+				if reserve_history[:status] == @active_status
 					ground_object = Ground.find(reserve_history[:ground_id])
 					ground_name = ground_object.ground_name
 					activity_name = SportsMaster.find(reserve_history[:sports_master_id]).name
@@ -105,7 +100,7 @@ class PagesController < ApplicationController
 			@inactive_reservations_history = []
 			@current_ground_id = params[:ground_id]
 			Reservation.where(ground_id: @current_ground_id).find_each do |reserve_history|
-				if reserve_history[:status] == "active"
+				if reserve_history[:status] == @active_status
 					ground_object = Ground.find(reserve_history[:ground_id])
 					ground_name = ground_object.ground_name
 					ground_owner = ground_object.user_id
@@ -132,25 +127,34 @@ class PagesController < ApplicationController
 
 	def cancelreservation
 		@res_2_cancel = Reservation.find(params[:id])
-		# @res_2_cancel.update({:status => "inactive"})
 
     # MANUAL CANCELLATION OF RESERVATIONS
-	    respond_to do |format|
-			if @res_2_cancel.update({:status => "inactive"})
-		        format.html { redirect_to root_path, notice: "Reservation was deactivated."}
-		    else
-		    	format.html { redirect_to root_path, notice: "Couldnt process cancellation request." }
-		    end
+    respond_to do |format|
+		if @res_2_cancel.update({:status => @inactive_status})
+	        format.html { redirect_to root_path, notice: "Reservation was deactivated."}
+	    else
+	    	format.html { redirect_to root_path, notice: "Couldnt process cancellation request." }
+	    end
+		end
+	end
+
+	def check_in_client
+		# render plain: "#{params[:id]}"
+		@res_to_check_in = Reservation.find(params[:id])
+		respond_to do |format|
+			if @res_to_check_in.update({:status => "checked_in"})
+	      format.html { redirect_to root_path, notice: "User checked in."}
+	    else
+	    	format.html { redirect_to root_path, notice: "Couldnt check in." }
+	    end
 		end
 	end
 
 	def add_2_favorites
 		# YOU CANNOT LEAVE AN EMPTY VALUE IN A JUNCTION TABLE
-		# render plain: "#{params}"
 		ground_id = params[:ground_id]
 		@cur_ground = Ground.find(ground_id)
 		@usm_doc = UserSportsMaster.new({:user_id => current_user.id, :ground_id => ground_id})
-		# render plain: "#{{:user_id => current_user.id, :ground_id => ground_id}.inspect}"
 		respond_to do |format|
 			if @usm_doc.save
 	        	format.html { redirect_to @cur_ground, notice: "Ground added to favorites."}
@@ -161,11 +165,9 @@ class PagesController < ApplicationController
 	end
 
 	def remove_from_favorites
-		# render plain: "#{params}"
 		ground_id = params[:ground_id]
 		@cur_ground = Ground.find(ground_id)
 		@usm_doc = UserSportsMaster.where({:user_id => current_user.id, :ground_id => ground_id})
-		# render plain: "#{{:user_id => current_user.id, :ground_id => ground_id}.inspect}"
 		respond_to do |format|
 			if @usm_doc.delete_all
 	        	format.html { redirect_to @cur_ground, notice: "Ground removed to favorites."}
@@ -197,7 +199,6 @@ class PagesController < ApplicationController
 	end
 
 	def groundresults
-		# render plain: "#{params}"
 		@searchword = params[:search_word]
 		downcase_searchword =@searchword.downcase
 		allgrounds = Ground.all
@@ -210,7 +211,6 @@ class PagesController < ApplicationController
     if @all_activities.include?downcase_searchword
     	result_ground_obj = SportsMaster.where(name:@searchword)[0]
     	render "/grounds/2"
-    	# redirect_to "grounds/#{result_ground_obj.id}"
     else
 			allgrounds.each do |ground|
 				if ground.ground_name.downcase.include?downcase_searchword
@@ -225,6 +225,5 @@ class PagesController < ApplicationController
 				end
 			end
 		end
-		# @all_grounds = Ground.find_each
 	end
 end

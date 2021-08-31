@@ -22,4 +22,5 @@ Rails.application.routes.draw do
   delete 'remove_favorites' => 'pages#remove_from_favorites'
   get 'my_grounds' => 'pages#my_grounds'
   post 'ground_search' => 'pages#ground_search'
+  post 'check_in_client' => 'pages#check_in_client'
 end

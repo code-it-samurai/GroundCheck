@@ -23,11 +23,9 @@ class ReservationsController < ApplicationController
 
   # POST /reservations or /reservations.json
   def create
-    # render plain: "#{params}"
     # PARSING AND CONFIGURING FOR SUITABLE STORAGE FORMAT
     received_date, received_time = params[:date_time].split("=")
     processed_date = Date.parse(received_date)
-    # render plain: "#{received_date} #{received_time} #{params[:date_time]}"
     received_time = received_time.split("-")[0]
     processed_start_time, processed_finish_time = received_time.split("to")
 
@@ -43,7 +41,6 @@ class ReservationsController < ApplicationController
     res_params = {:date => processed_date, :user_id => res_user_id, :ground_id => res_ground_id, :sports_master_id => res_sports_master_id, :starting_time => processed_start_time, :finishing_time => processed_finish_time, :cost => res_cost}
     @ground = Ground.find(res_ground_id)
     @reservation = Reservation.new(res_params)    
-    # render plain: "#{res_params}"
     respond_to do |format|
       if @reservation.save
         format.html { redirect_to root_path, notice: "Reservation was successfully created." }

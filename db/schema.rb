@@ -10,16 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_28_025944) do
-
-  create_table "ground_activities", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "ground_id"
-    t.integer "sports_master_id"
-    t.index ["ground_id"], name: "index_ground_activities_on_ground_id"
-    t.index ["sports_master_id"], name: "index_ground_activities_on_sports_master_id"
-  end
+ActiveRecord::Schema.define(version: 2021_08_30_122045) do
 
   create_table "ground_sports_masters", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -69,15 +60,6 @@ ActiveRecord::Schema.define(version: 2021_08_28_025944) do
     t.boolean "outdoor"
   end
 
-  create_table "user_activities", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "sports_master_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["sports_master_id"], name: "index_user_activities_on_sports_master_id"
-    t.index ["user_id"], name: "index_user_activities_on_user_id"
-  end
-
   create_table "user_sports_masters", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -96,7 +78,7 @@ ActiveRecord::Schema.define(version: 2021_08_28_025944) do
     t.integer "pincode"
     t.text "address"
     t.integer "phone"
-    t.boolean "ground_owner"
+    t.boolean "ground_owner", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "email", default: "", null: false

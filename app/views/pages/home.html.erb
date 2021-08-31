@@ -64,7 +64,6 @@
 										</div>	
 									</div>
 									<div>
-										<!-- <%= link_to 'CANCEL', reservation[:obj], method: :delete, class: "btn btn-danger cancel-btn", data: { confirm: 'Are you sure?' } %> -->
 											<%= link_to image_tag("delete.png",height: "25px", color:"orange"), cancelreservation_path(id: reservation[:obj].id), method: :post, class: "want-tooltip cancel-btn res-cancel-btn", data: { confirm: 'Are you sure?' }, "title":"CANCEL" %>
 									</div>
 								</div>
@@ -81,7 +80,45 @@
 					</div>
 				</div>
 			</div>
-
+			<% if current_user.ground_owner %>
+				<div class="reservations-viewer jumbotron jumbotron-fluid">
+					<div class="container justify-center">
+						<h2 class="secondary-title">GROUND ADMINISTRATION</h2>
+						<div class="admin-reservations-holder">
+							<% if @owned_ground_reservations %>
+								<% @owned_ground_reservations.each do |reservation| %>
+									<div class="home-ground-admin-post">
+										<div class="home-reservation-post-info-holder">
+											<div class="home-admin-user-name">
+												<% if reservation[:username].length > 15 %>
+													<%= reservation[:username][0..14]+".." %>
+												<%else%>
+													<%= reservation[:username]%>
+												<%end%>
+											</div>
+											<div class="home-admin-reservation-activity">
+												<%= reservation[:reserved_activity] %>
+												<%= reservation[:obj].status %>
+											</div>
+											<div class="home-reservation-post-datetime-holder">
+												<div class="home-reservation-date"><%= reservation[:reservation_date] %></div> 
+												<div class="home-reservation-time"><%= reservation[:startingtime] %></div>	
+											</div>	
+											<div class="home-admin-reservation-btn-holder">
+												<% if reservation[:obj].status != "checked_in" %>
+													<%= link_to "Check In", check_in_client_path(id: reservation[:obj].id), method: :post, class: "check-in-btn cancel-btn" ,data: { confirm: 'Are you sure?' } %>
+												<% else %>
+													<%= link_to "Checked In", check_in_client_path(id: reservation[:obj].id), method: :post, class: "checked-in-btn", disabled:true ,data: { confirm: 'Are you sure?' } %>
+												<% end %>
+											</div>
+										</div>
+									</div>
+								<% end %>
+							<% end %>
+						</div>
+					</div>
+				</div>
+			<% end %>
 				
 			<div class="user-interest-holder  jumbotron jumbotron-fluid">
 				<div class="container">

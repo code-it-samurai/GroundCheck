@@ -67,7 +67,6 @@ class UsersController < ApplicationController
         end
       end
     end
-    # render plain: " #{@sports_master.id} #{@user.id} #{UserSportsMaster.where(user_id: @user.id, sports_master_id: @sports_master.id).length}"
 
     respond_to do |format|
       if @user.update(user_params)
@@ -94,6 +93,8 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+
+      # Getting names of all the activities user is interested in in an array
       @available_activities = []
       user_sports_master = UserSportsMaster.where(user_id: @user.id)
       user_sports_master.each do |usm|
@@ -102,6 +103,7 @@ class UsersController < ApplicationController
           @available_activities.append(activity_name)
         end
       end
+      # Getting the names of all the activities in sports master inside an array
       @all_activities = []
       all_activity_objects = SportsMaster.all
       all_activity_objects.each do |activity_obj|
