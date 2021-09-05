@@ -1,82 +1,90 @@
-<div class="user-profile-holder">
-  <%= render 'pages/header'%>
-  <div class="user-profile-body">
-    <% if notice %>
-      <div class="welcome-note-container">
-        <div class="home-welcome-note">
-          <%= notice %>
+<% if @sus_user%>
+  <% controller.redirect_to root_path, notice:"Unauthorized Access"%>
+<% else %>
+  <div class="user-profile-holder user-profile-background" style="height: auto;">
+    <%= render 'pages/header'%>
+    <div class="user-profile-body">
+      <% if notice %>
+        <div class="welcome-note-container">
+          <div class="home-welcome-note">
+            <%= notice %>
+          </div>
+          <div class="pointer">
+          </div>
         </div>
-        <div class="pointer">
+      <% elsif alert %>
+        <div class="welcome-note-container">
+          <span class="home-welcome-note">
+            <%= alert %>
+          </span>
+          <div class="pointer">
+          </div>
         </div>
-      </div>
-    <% elsif alert %>
-      <div class="welcome-note-container">
-        <span class="home-welcome-note">
-          <%= alert %>
-        </span>
-        <div class="pointer">
-        </div>
-      </div>
-    <% end %>
+      <% end %>
 
 
-    <div class="jumbotron jumbotron-fluid">
-      <div class="container gp-container">
-        <div style="padding-right:10px">
-          <h1 class="main-title"><%= @user.username %></h1>
-          <p class="lead-title">Welcome <%= current_user.name %>, make reservations and stay at the top of your game.</p>  
-        </div>
-        <div>
-          <%= link_to "Edit Profile",edit_user_path , class:"btn btn-success cancel-btn"%>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="new-ground-textboxes-holder">
-      <div class="textboxes-holder">
-        <div class="tb-holder-title">Basic info Info</div>
-
-        <div class="gp-textbox-holder">
-          <div class="gp-smaller-title">Email:</div>
-          <div><%= @user.email %></div>
-        </div>
-
-        <div class="gp-textbox-holder">
-          <div class="gp-smaller-title">Phone:</div>
-          <div><%= @user.phone %></div>
-        </div>
-
-        <div class="gp-textbox-holder">
-          <div class="gp-smaller-title">Location:</div>
-          <div><%= @user.address %></div>
-        </div>
-
-        <div class="gp-textbox-holder">
-          <div class="gp-smaller-title">Pincode:</div>
-          <div><%= @user.pincode %></div>
+      <div class="custom-jumbotron">
+        <div class="container gp-container">
+          <div style="padding-right:10px">
+            <h1 class="main-title"><%= @user.name %></h1>
+          </div>
+          <div>
+            <%= link_to "Edit Profile",edit_user_path , class:"btn btn-success cancel-btn"%>
+          </div>
         </div>
       </div>
 
-      <div class="textboxes-holder">
 
-
-        <div class="tb-holder-title">Available Acitvities</div>
-        <div class="gp-textbox-holder gp-tb-holder">
-          <!-- <div class="gp-smaller-title">Activities:</div> -->
-            <div class="gp-activities-holder">
-              <div class="gp-interests">
-                <% @available_activities.each do |activity| %>
-                  <div class="activity"><%= activity %></div>
-                <% end %>
+      <div class="new-ground-textboxes-holder">
+        <div class="textboxes-holder col-lg-4 col-sm-12">
+          <div class="container justify-center">
+            <div class="tb-holder-title">Primary Info</div>
+              <div class="gp-textbox-holder">
+                <div class="gp-smaller-title">Name:</div>
+                <div><%= @user.name %></div>
               </div>
+
+            <% if @user.email%>
+              <div class="gp-textbox-holder">
+                <div class="gp-smaller-title">Email:</div>
+                <div><%= @user.email %></div>
+              </div>
+            <% end %>
+            
+            <% if @user.phone %>
+              <div class="gp-textbox-holder">
+                <div class="gp-smaller-title">Phone:</div>
+                <div><%= @user.phone %></div>
+              </div>
+            <% end %>
+
+            <div class="gp-textbox-holder">
+              <div class="gp-smaller-title">Location:</div>
+              <div style="width:200px"><%= @user.address %></div>
             </div>
+
+            <div class="gp-textbox-holder">
+              <div class="gp-smaller-title">Pincode:</div>
+              <div><%= @user.pincode %></div>
+            </div>
+          </div>
         </div>
 
+        <div class="textboxes-holder col-lg-4 col-sm-12">
+          <div class="container justify-center">
+            <div class="tb-holder-title">Available Acitvities</div>
+            <div class="gp-textbox-holder gp-tb-holder">
+                  <div class="gp-interests">
+                    <% @available_activities.each do |activity| %>
+                      <div class="activity"><%= activity %></div>
+                    <% end %>
+                  </div>
+            </div>  
+          </div>
+        </div> 
 
-      </div> 
-
+      </div>
     </div>
   </div>
-</div>
+<% end %>
 

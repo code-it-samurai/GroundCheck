@@ -1,9 +1,9 @@
-<div >
+<div class="ground-result-background">
 	<%= render 'pages/header'%>
 	<div class="groundresults-body">
 		
 		<div class="ground-results-viewer">
-			<div class="jumbotron jumbotron-fluid w-100">
+			<div class="custom-jumbotron w-100">
 			  <div class="container">
 			  	<% searchword = @searchword %>
 			    <h1 class=" main-title">
@@ -14,7 +14,7 @@
 			</div>
 			<div class="ground-results-holder">
 				<% @results.each do |ground| %>
-					<div class="ground-result-post">
+					<div class="ground-result-post col-lg-4 col-sm-12">
 						<div class="ground-result-post-title">
 							<% ground_name = ground.ground_name %>
 							<span><%= ground_name[0..15] %></span>

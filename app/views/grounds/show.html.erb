@@ -1,162 +1,171 @@
-<%= render 'pages/header'%>
-
-<div class="gp-holder">
-  <% if notice %>
-    <div class="welcome-note-container">
-      <div class="home-welcome-note">
-        <%= notice %>
-      </div>
-      <div class="pointer">
-      </div>
-    </div>
-  <% elsif alert %>
-    <div class="welcome-note-container">
-      <span class="home-welcome-note">
-        <%= alert %>
-      </span>
-      <div class="pointer">
-      </div>
-    </div>
-  <% end %>
-  
-  <div class="gp-main"> 
-    <div class="jumbotron jumbotron-fluid gp-jumbotron">
-      <div class="container gp-container">
-        <div>
-          <h1 class="main-title"><%= @ground.ground_name %></h1>
-          <p class="lead-title">Ground Profile</p>  
+<div class="ground-profile-background">
+  <%= render 'pages/header'%>
+  <div class="gp-holder">
+    <% if notice %>
+      <div class="welcome-note-container">
+        <div class="home-welcome-note">
+          <%= notice %>
         </div>
-        <div class="jumbotron-btn-div">
-          <% if @favorite %>
-            <%= link_to "Remove Favorite", remove_favorites_path(ground_id: @current_ground_id), method: :delete, class:"btn btn-secondary cancel-btn"%>
-          <% else %>
-            <%= link_to "Add to Favorites", add_favorites_path(ground_id: @current_ground_id), method: :post, class:"btn btn-success cancel-btn"%>
-          <% end %>
-          <% if @user_owns_this_ground %>
-              <%= button_tag "Options", onclick:"document.getElementById('mymodal').style.display='block'", class:"btn btn-success"%>
-          <% end %>
+        <div class="pointer">
         </div>
       </div>
-    </div>
-    <div class="new-ground-textboxes-holder">
-      <div class="textboxes-holder">
-        <div class="tb-holder-title" >Primary Info</div>
-
-        <% if @ground.location %>
-          <div class="gp-textbox-holder w-200">
-            <div class="gp-smaller-title">Ground Location:</div>
-            <div class="gp-location"><%= @ground.location %></div>
+    <% elsif alert %>
+      <div class="welcome-note-container">
+        <span class="home-welcome-note">
+          <%= alert %>
+        </span>
+        <div class="pointer">
+        </div>
+      </div>
+    <% end %>
+    <div class="gp-main"> 
+      <div class="custom-jumbotron gp-jumbotron">
+        <div class="container gp-container">
+          <div>
+            <h1 class="main-title"><%= @ground.ground_name %></h1>
+            <p class="lead-title">Ground Profile</p>  
           </div>
-        <% end %>
-
-        <div class="gp-textbox-holder">
-          <div class="gp-smaller-title">Opening Time:</div>
-          <div><%= @open_time %></div>
-        </div>
-
-        <div class="gp-textbox-holder">
-          <div class="gp-smaller-title">Closing Time:</div>
-          <div><%= @close_time %></div>
-        </div>
-
-        <div class="gp-textbox-holder w-200">
-          <div class="gp-smaller-title">Cost Per Hour:</div>
-          <div><%= @ground.cost_per_hour %></div>
-        </div>
-      </div>
-      <!-- ---------------------------------------- -->
-      <div>  
-        <div class="textboxes-holder contact-info-tb-holder">
-          <div class="tb-holder-title">Contact Info</div>
-          <% if @ground.business_email %>
-            <div class="gp-textbox-holder">
-              <div class="gp-smaller-title">Email:</div>
-              <div><%= @ground.business_email %></div>
-            </div>
-          <% end %>
-          <% if @ground.business_phone > 0 %>
-            <div class="gp-textbox-holder">
-              <div class="gp-smaller-title">Phone:</div>
-              <div><%= @ground.business_phone %></div>
-            </div>
-          <% end %>
-        </div>
-        <div class="textboxes-holder reservation-tb-holder ">
-          <div class="tb-holder-title">Reserve</div>
-          <div class="gp-textbox-holder">
-            <%= form_with url: reservations_path, method: :post do |form| %>
-              <div class="res-form-holder">
-                <%= form.select(:selected_activity, @current_ground_activities, {:prompt => "Activity"}, {:id => "activity-select"}, ) %>
-
-                <% today = @current_ground_available_dates %>
-
-                <% @allsportsmasters.each do |asm| %>
-                  <div id="<%= asm.name %>" class="hidden-selects" style="display: none;">
-                    <select name="date_time" prompt="date-time" class="date-time-select">
-                      <% day = -1 %>
-                      <option value="" selected="selected" disabled><%=asm.name%> Date & Time</option>
-                      <% @display_activity_res[asm.name].each do |date|%>
-                        <% if date.include?"on" %>
-                          <option value='<%= date %>' disabled><%= date %></option>
-                          <% day = day + 1 %>
-                        <% else %>
-                          <%= value = today[day].to_s + " = " + date.to_s%>
-                          <option value="<%= value %>"><%= date %></option>
-                        <% end %>
-                      <% end %>
-                    </select>  
-                  </div>
-                  
-                <% end %>
-                <%= form.hidden_field :user_id, {value:current_user.id}%>
-                <%= form.hidden_field :ground_id, {value:@current_ground_id}%>
-                <%= form.hidden_field :cost, {value:@ground.cost_per_hour}%>
-            </div>
-            <div class="submit-div">
-                <%= form.submit "BOOK", class:"btn btn-success"%>
-            </div>
+          <div class="jumbotron-btn-div">
+            <% if @favorite %>
+              <%= link_to "Remove Favorite", remove_favorites_path(ground_id: @current_ground_id), method: :delete, class:"btn btn-secondary cancel-btn"%>
+            <% else %>
+              <%= link_to "Add to Favorites", add_favorites_path(ground_id: @current_ground_id), method: :post, class:"btn btn-success cancel-btn"%>
+            <% end %>
+            <% if @user_owns_this_ground %>
+                <%= button_tag "Options", onclick:"document.getElementById('mymodal').style.display='block'", class:"btn btn-success"%>
             <% end %>
           </div>
         </div>
       </div>
-      <!-- ------------------------------------------------- -->
-      <div class="textboxes-holder ">
-        <div class="tb-holder-title">Available Acitvities</div>
-        <div class="gp-textbox-holder gp-tb-holder">
-          <!-- <div class="gp-smaller-title">Activities:</div> -->
-            <div class="gp-activities-holder">
-              <div class="gp-interests">
-                <% @current_ground_activities.each do |activity| %>
-                  <div class="activity"><%= activity %></div>
-                <% end %>
+      <div class="new-ground-textboxes-holder">
+        <div class="show-ground-textboxes-holder col-lg-4 col-sm-12">
+          <div class="container justify-center">
+            <div class="tb-holder-title" >Primary Info</div>
+
+            <% if @ground.location %>
+              <div class="gp-textbox-holder w-200">
+                <div class="gp-smaller-title">Ground Location:</div>
+                <div class="gp-location"><%= @ground.location %></div>
               </div>
+            <% end %>
+
+            <div class="gp-textbox-holder w-200">
+              <div class="gp-smaller-title">Opening Time:</div>
+              <div><%= @open_time %></div>
             </div>
+
+            <div class="gp-textbox-holder w-200">
+              <div class="gp-smaller-title">Closing Time:</div>
+              <div><%= @close_time %></div>
+            </div>
+
+            <div class="gp-textbox-holder w-200">
+              <div class="gp-smaller-title">Cost Per Hour:</div>
+              <div><%= @ground.cost_per_hour %></div>
+            </div>
+          </div>
+          
         </div>
-      </div>
-      <!-- ---------------------------------------------------- -->
-    </div>
-      <div id="mymodal" class="modal">
-        <div class="my-modal-content animate-top">
-          <header class="w3-container w3-teal"> 
-            <span onclick="document.getElementById('mymodal').style.display='none'" 
-            class="w3-button w3-display-topright close-modal">&times;</span>
-            <div class="options-title">OPTIONS</div>
-          </header>
-          <div class="options-list">
-            <div class="modal-option-holder">
-              <%= link_to "All Reservations", reservation_history_path("history_for": "ground",ground_id: @current_ground_id), class: "options-list-a" %>
+        <!-- ---------------------------------------- -->
+        <div class="col-lg-4 col-sm-12">  
+          <div class="show-ground-textboxes-holder col-lg-12  contact-info-tb-holder">
+            <div class="container justify-center">
+              <div class="tb-holder-title">Contact Info</div>
+                <% if @ground.business_email %>
+                  <div class="gp-textbox-holder w-200">
+                    <div class="gp-smaller-title">Email:</div>
+                    <div><%= @ground.business_email %></div>
+                  </div>
+                <% end %>
+                <% if @ground.business_phone > 0 %>
+                  <div class="gp-textbox-holder w-200">
+                    <div class="gp-smaller-title">Phone:</div>
+                    <div><%= @ground.business_phone %></div>
+                  </div>
+                <% end %>
             </div>
-            <div class="modal-option-holder">
-              <%= link_to "Ground Profile Edit", edit_ground_path(id: @current_ground_id), class: "options-list-a" %>
-            </div>              
-            <div class="modal-option-holder">
-              <%= link_to "About", about_path, class: "options-list-a" %>
+          </div>
+          <div class="show-ground-textboxes-holder col-lg-12 reservation-tb-holder ">
+            <div class="container justify-center">
+              <div class="tb-holder-title">Reserve</div>
+                <div class="gp-textbox-holder">
+                  <%= form_with url: reservations_path, method: :post do |form| %>
+                    <div class="res-form-holder">
+                      <%= form.select(:selected_activity, @current_ground_activities, {:prompt => "Activity"}, {:id => "activity-select"}, ) %>
+
+                      <% today = @current_ground_available_dates %>
+
+                      <% @allsportsmasters.each do |asm| %>
+                        <div id="<%= asm.name %>" class="hidden-selects" style="display: none;">
+                          <select name="date_time" prompt="date-time" class="date-time-select">
+                            <% day = -1 %>
+                            <option value="" selected="selected" disabled><%=asm.name%> Date & Time</option>
+                            <% @ground_available_reservations[asm.name].each do |date|%>
+                              <% if date.include?"on" %>
+                                <option value='<%= date %>' disabled><%= date %></option>
+                                <% day = day + 1 %>
+                              <% else %>
+                                <%= value = today[day].to_s + " = " + date.to_s%>
+                                <option value="<%= value %>"><%= date %></option>
+                              <% end %>
+                            <% end %>
+                          </select>  
+                        </div>
+                        
+                      <% end %>
+                      <%= form.hidden_field :user_id, {value:current_user.id}%>
+                      <%= form.hidden_field :ground_id, {value:@current_ground_id}%>
+                      <%= form.hidden_field :cost, {value:@ground.cost_per_hour}%>
+                  </div>
+                  <div class="submit-div">
+                      <%= form.submit "BOOK", class:"btn btn-success"%>
+                  </div>
+                  <% end %>
+                </div>
             </div>
           </div>
         </div>
+        <!-- ------------------------------------------------- -->
+        <div class="show-ground-textboxes-holder col-lg-4 col-sm-12">
+          <div class="container justify-center">
+            <div class="tb-holder-title">Available Acitvities</div>
+            <div class="gp-textbox-holder gp-tb-holder">
+              <!-- <div class="gp-smaller-title">Activities:</div> -->
+                  <div class="gp-interests">
+                    <% @current_ground_activities.each do |activity| %>
+                      <div class="activity"><%= activity %></div>
+                    <% end %>
+                  </div>
+            </div>  
+          </div>
+        </div>
+        <!-- ---------------------------------------------------- -->
+      </div>
+        <div id="mymodal" class="modal">
+          <div class="my-modal-content animate-top">
+            <header class="w3-container w3-teal"> 
+              <span onclick="document.getElementById('mymodal').style.display='none'" 
+              class="w3-button w3-display-topright close-modal">&times;</span>
+              <div class="options-title">OPTIONS</div>
+            </header>
+            <div class="options-list">
+              <div class="modal-option-holder">
+                <%= link_to "All Reservations", reservation_history_path("history_for": "ground",ground_id: @current_ground_id), class: "options-list-a" %>
+              </div>
+              <div class="modal-option-holder">
+                <%= link_to "Ground Profile Edit", edit_ground_path(id: @current_ground_id), class: "options-list-a" %>
+              </div>              
+              <div class="modal-option-holder">
+                <%= link_to "About", about_path, class: "options-list-a" %>
+              </div>
+            </div>
+          </div>
+      </div>
     </div>
   </div>
+
 </div>
+
 <script type="text/javascript">
   document.getElementById('activity-select').addEventListener('change', function() {
     // invdiv = document.getElementById('invisible-div').innerHTML

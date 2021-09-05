@@ -6,8 +6,22 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def get_all_available_activities
+    all_activities = []
+    all_activity_objects = SportsMaster.all
+    all_activity_objects.each do |activity_obj|
+      all_activities.append(activity_obj.name)
+    end
+    return all_activities
+  end
+
   # GET /users/1 or /users/1.json
   def show
+    @sus_user = false
+    if current_user.id != @user.id
+      @sus_user = true
+    end
+
   end
 
   # GET /users/new
@@ -17,6 +31,12 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @sus_user = false
+    if(user_signed_in?)
+      if current_user.id != @user.id
+        @sus_user = true
+      end
+    end
     @available_activities = []
     user_sports_master = UserSportsMaster.where(user_id: @user.id)
     user_sports_master.each do |usm|
@@ -29,13 +49,12 @@ class UsersController < ApplicationController
 
   # POST /users or /users.json
   def create
-    # render plain: "#{params[:user]}"
     @user = User.new(user_params)
-    
+    @user.save
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: "User was successfully created." }
+        format.html { redirect_to @user, notice: "Your profile was successfully created." }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -104,11 +123,7 @@ class UsersController < ApplicationController
         end
       end
       # Getting the names of all the activities in sports master inside an array
-      @all_activities = []
-      all_activity_objects = SportsMaster.all
-      all_activity_objects.each do |activity_obj|
-        @all_activities.append(activity_obj.name)
-      end
+      @all_activities = get_all_available_activities()
     end
 
     # Only allow a list of trusted parameters through.

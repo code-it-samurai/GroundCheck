@@ -1,6 +1,10 @@
-<%= render 'pages/header'%>
+<div class="ground-creation-background">
+  <% if @sus_user %>
+  <% controller.redirect_to root_path, notice:"Unauthorized access" %>
+  <%else%>
+  <%= render 'pages/header'%>
 
-<%= render 'form', ground: @ground %>
+  <%= render 'form', ground: @ground %>
 
-<%= link_to 'Show', @ground %> |
-<%= link_to 'Back', grounds_path %>
+  <% end %>  
+</div>

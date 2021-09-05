@@ -1,4 +1,5 @@
-<%= render 'pages/header'%>
+<div class="ground-creation-background">
+  <%= render 'pages/header'%>
 
 
 <div class="new-ground-body">
@@ -8,7 +9,9 @@
       <p class="lead-title">Create your own ground's profile by inserting required details</p>
     </div>
   </div>
-	<%= render 'form', ground: @ground %>
+  <%= render 'form', ground: @ground %>
 </div>
 
 <%= link_to 'Back', grounds_path %>
+  
+</div>

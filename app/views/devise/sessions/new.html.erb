@@ -1,4 +1,4 @@
-<div class="signup-holder">
+<div class="signup-holder signin-background">
   <%= render 'pages/guestnave' %>
   <div class="signup-body">
     <div class="jumbotron jumbotron-fluid w-100">
@@ -10,9 +10,8 @@
     <div class="signup-form-holder">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
-        <div class="signup-textboxes-holder"> 
           <div class=" signup-textboxes-holder">
-            <div class="container" style="display:flex; flex-direction: column; justify-content: center; align-items: center;">
+            <div class="container justify-center">
               <div class="signup-textbox-holder">
                 <div class="new-ground-tb-lables">Email:</div>
                 <%= f.email_field :email, autofocus: true, autocomplete: "email", ondrop:"return false;", onpaste:"return false;", onkeypress:"return (event.charCode>=97 && event.charCode<=122) || (event.charCode>=48 && event.charCode<=57) || event.charCode== 64 || event.charCode== 46" %>
@@ -29,8 +28,6 @@
             <%= render "devise/shared/links" %>
           </div>
         </div>
-      </div>
-        
       <% end -%>
     </div>  
   </div>

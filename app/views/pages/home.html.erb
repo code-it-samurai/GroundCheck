@@ -1,5 +1,4 @@
 	<div class= "home-container" id="home">
-
 	<% if user_signed_in? %>
 	<%= render 'pages/header'%>
 		<div class="home-body">
@@ -25,26 +24,26 @@
 				</div>
 			</div>
 		<% end %>
-		<div class="jumbotron jumbotron-fluid">
+		<div class="custom-jumbotron">
 		  <div class="container">
 		    <h1 class=" main-title">GROUNDCHECK</h1>
 		    <p class="lead-title">Welcome <%= current_user.name %>, make reservations and stay at the top of your game.</p>
 		  </div>
 		</div>
-			<div class="reservations-viewer jumbotron jumbotron-fluid">
-				<div class="container justify-center">
+			<div class="reservations-viewer custom-jumbotron">
+				<div class="container">
 					<h2 class="secondary-title">RESERVATIONS</h2>
 					<div class="reservations-holder">
 					<% if @current_user_reservations %>
 						<% @current_user_reservations.each do |reservation| %>
 							<% if reservation[:obj].status == "active" %>
-								<div class="home-reservation-post want-tooltip" title="Status: <%=reservation[:obj].status.upcase %>" style="background:#56776C">
+								<div class="home-reservation-post want-tooltip col-lg-3 col-sm-12" title="Status: <%=reservation[:obj].status.upcase %>" style="background:#56776C">
 							<% elsif reservation[:obj].status == "hour_left" %>
-								<div class="home-reservation-post want-tooltip" title="<%=reservation[:obj].status.upcase %>" style="background:#22577A">
+								<div class="home-reservation-post want-tooltip col-lg-3 col-sm-12" title="<%=reservation[:obj].status.upcase %>" style="background:#22577A">
 							<% elsif reservation[:obj].status == "play_on" %>
-								<div class="home-reservation-post want-tooltip" title="<%=reservation[:obj].status.upcase %>" style="background:#F55C47">
+								<div class="home-reservation-post want-tooltip col-lg-3 col-sm-12" title="<%=reservation[:obj].status.upcase %>" style="background:#F55C47">
 							<% elsif reservation[:obj].status == "checked_in" %>
-								<div class="home-reservation-post want-tooltip" title="<%=reservation[:obj].status.upcase %>" style="background:#50D890">
+								<div class="home-reservation-post want-tooltip col-lg-3 col-sm-12" title="<%=reservation[:obj].status.upcase %>" style="background:#50D890">
 							<% end %>
 								<!-- <div class="home-reservation-post"> -->
 									<div class="home-reservation-post-info-holder">
@@ -81,13 +80,13 @@
 				</div>
 			</div>
 			<% if current_user.ground_owner %>
-				<div class="reservations-viewer jumbotron jumbotron-fluid">
-					<div class="container justify-center">
+				<div class="reservations-viewer custom-jumbotron">
+					<div class="container">
 						<h2 class="secondary-title">GROUND ADMINISTRATION</h2>
 						<div class="admin-reservations-holder">
 							<% if @owned_ground_reservations %>
 								<% @owned_ground_reservations.each do |reservation| %>
-									<div class="home-ground-admin-post">
+									<div class="home-ground-admin-post col-lg-4 col-sm-12">
 										<div class="home-reservation-post-info-holder">
 											<div class="home-admin-user-name">
 												<% if reservation[:username].length > 15 %>
@@ -120,7 +119,7 @@
 				</div>
 			<% end %>
 				
-			<div class="user-interest-holder  jumbotron jumbotron-fluid">
+			<div class="user-interest-holder custom-jumbotron">
 				<div class="container">
 					<h3 class="secondary-title">YOUR INTERESTS</h3>
 
@@ -134,10 +133,8 @@
 				</div>
 			</div>
 		<% else %>
-			<div class="home-guest-main-div background-home-image">
+			<div class="home-guest-main-div background-front-image">
 				<%= render 'pages/guestnave'%>
-				
-				
 				<div class="home-guest-body ">
 					<% if notice %>
 						<div class="welcome-note-container">
@@ -156,14 +153,14 @@
 							</div>
 						</div>
 					<% end %>
-					<div class="jumbotron jumbotron-fluid " style="height:100%; background:transparent; color:white">
+					<div class="custom-jumbotron " style="height:100%; background:transparent; color:white">
 					  <div class="container">
 					    <h1 class=" main-title">GROUNDCHECK</h1>
 					    <p class="lead-title">
 					    	Welcome to GroundCheck, please sign up or sign in to use our services
 					    </p>
 					    <p>
-					    	<div class="submit-div" style="margin-top: 100px;">
+					    	<div class="home-btn-holder">
 									<%= link_to "Sign In", new_user_session_path, class:" cancel-btn sign-in-btn"%>
 									<%= link_to "Sign Up",  new_user_registration_path, class:"cancel-btn sign-up-btn"%>
 								</div>	

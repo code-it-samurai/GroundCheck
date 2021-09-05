@@ -12,7 +12,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     # super
-    # render plain: "#{params[:user][:sports_activities]}"
     @user = User.new(user_params)
     respond_to do |format|
       if @user.save
@@ -61,7 +60,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
     # devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :name, :password, :pincode, :address, :email, :phone, :ground_owner])
     devise_parameter_sanitizer.permit(:sign_up) do |user|
-      user.permit(:username, :name, :pincode, :address, :phone, :ground_owner, :email, :password, :password_confirmation)
+      user.permit(:username, :name, :pincode, :address, :phone, :email, :password, :password_confirmation)
     end
   end
 

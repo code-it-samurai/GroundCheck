@@ -1,4 +1,4 @@
-<div class="edit-user-holder">
+  <div class="edit-user-holder">
   <%= form_with(model: user) do |form| %>
     <% if user.errors.any? %>
       <div id="error_explanation">
@@ -11,14 +11,15 @@
         </ul>
       </div>
     <% end %>
-    <div class="jumbotron jumbotron-fluid w-100">
+    <div class="custom-jumbotron w-100">
       <div class="container">
         <h1 class=" main-title">Profile Edit</h1>
       </div>
     </div>
     <div class="new-ground-textboxes-holder justify-center1"> 
-      <div class="textboxes-holder">
-        <div class="container">
+      <div class="textboxes-holder col-lg-4 col-sm-12">
+        <div class="container justify-center">
+          <div class="tb-holder-title">Primary Info</div>
 
           <div class="new-ground-textbox-holder">
             <div class="new-ground-tb-lables">Username:</div>
@@ -50,8 +51,8 @@
           </div>
         </div>
       </div>
-      <div class="textboxes-holder">
-        <div class="container">
+      <div class="textboxes-holder col-lg-4 col-sm-12">
+        <div class="container justify-center">
           <div class="tb-holder-title">Activities</div>
           <div class="new-ground-interests">
             <div class="new-ground-interests-holder">

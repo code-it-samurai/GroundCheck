@@ -20,7 +20,72 @@
     scrollbar-width:none;
  }
  /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 550px) {
+@media screen and (max-width: 550px) {
+/*@media only screen and (max-width: 550px) {*/
+  .background-front-image{
+    background-image: url("title-image1.jpg");
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .ground-creation-background{
+    background-image: url("ground-creation-background.jpg");
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .ground-profile-background{
+    background-image: url("ground-profile-background.jpg");
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .user-profile-background{
+    background-image: url("user-profile-background.jpg");
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .user-profile-edit-background{
+    background-image: url("user-profile-edit.jpg");
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .reservation-history-background{
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("reservation-history-background.jpg");
+  }
+  .favorite-list-background{
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("favorite-list-background.jpg");
+  }
+  .ground-result-background{
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("ground-result-background1.jpg");    
+  }
   .home-guest-body{
      padding: 2%;
   }
@@ -51,13 +116,13 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    height: 120px;
+    /*height: 120px;*/
     border-style: solid;
     border-width: 0.6px;
     border-color: lightgray;
     /*background: green;*/
     border-radius: 3%;
-    width: 320px;
+    width: auto;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 10px;
@@ -67,14 +132,17 @@
     flex-direction: column;
     align-items: center;
     padding: 15px;
-    height: 160px;
+    /*height: 160px;*/
     border-style: solid;
     border-width: 0.6px;
-    border-color: #50D890;
+    border-color: grey;
     /*background: green;*/
     border-radius: 3%;
-    width: 300px;
+    /*width: 300px;*/
     margin-top: 10px;
+    background: rgba(0, 0, 0, 0.1);
+    /*margin-left: 0.5px;*/
+    /*margin-right: 0.5px;*/
     margin-bottom: 10px;
     text-align: center;
     justify-content: center;
@@ -97,7 +165,7 @@
     border-radius:10px;
     color: white;
     height: 40px;
-    width: 100px;
+    width: 75px;
   }
   .checked-in-btn{
     background: lightgray;
@@ -119,12 +187,7 @@
   .checked-in-btn:hover{
     text-decoration: none;
     background: #50D890;
-    color: white;
-  }
-  .checked-in-btn:hover{
-    text-decoration: none;
-    background: #50D890;
-    color: white;
+    color: black;
   }
   .home-admin-reservation-btn-holder{
     display: flex;
@@ -165,6 +228,9 @@
       height: 100vh;
       width: 100%;
       overflow-x: hidden;
+      background-image: url('home-background-image1.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
   }
   .user-interest-holder{
       /*height: 300px;*/
@@ -178,13 +244,13 @@
       margin-bottom: 30px;
   }
   .home-user-interests{
-      width: 320px;
+      /*width: 320px;*/
       flex-direction: row;
       overflow-x: scroll;
-      height: 200px;
+      /*height: 200px;*/
       display: flex;
       flex-direction: row;
-      min-width: 400px;
+      /*min-width: 400px;*/
       justify-content: flex-start;
       margin: auto;
   }
@@ -212,10 +278,10 @@
       align-items: center;        
       justify-content: center;
   }
-  .edit-interests{
+/*  .edit-interests{
       width: 300px;
       margin-bottom: 30px;
-  }
+  }*/
   .edit-profile-textbox{
       margin-left: auto;
       margin-right: auto;
@@ -224,15 +290,15 @@
       padding: auto;
       margin: 10px;
   }
-  .edit-textboxes-holder{
+/*  .edit-textboxes-holder{
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-  }
-  .edit-tb-lables{
+  }*/
+  /*.edit-tb-lables{
       font-weight: bold;
-  }
+  }*/
   .edit-user-holder{
       display: flex;
       margin: auto;
@@ -240,21 +306,21 @@
       /*flex-direction: column;*/
       justify-content: center;
   }
-  .edit-interests-holder{
+  /*.edit-interests-holder{
       margin: auto;
       width: 200px;
       height: 150px;
       display: flex;
       flex-direction: column;
       overflow-y: scroll;
-  }
-  .edit-intrest-checkbox-holder{
+  }*/
+  /*.edit-intrest-checkbox-holder{
       height: 40px;
-  }
-  .edit-interest-name{
+  }*/
+  /*.edit-interest-name{
       margin: 8px;
       font-size: 19px;
-  }
+  }*/
   .welcome-note-container{
       display: flex;
       justify-content: space-between;
@@ -262,7 +328,7 @@
       padding-left: 10px;
       padding-right: 10px;
       width: 100%;
-      height: 50px;
+      /*height: 50px;*/
       margin-top: 10px;
       margin-bottom: 10px;
       background-color: #b1fe97;
@@ -286,20 +352,23 @@
       justify-content: space-between;
       align-items: flex-start;
       padding: 15px;
-      height: 250px;
+      /*height: 200px;*/
       border-style: solid;
       border-width: 0.6px;
       border-color: lightgray;
       border-radius: 3%;
-      width: 275px;
-      margin: 7px;
+      /*width: 275px;*/
+      margin: 10px;
       margin-left: auto;
       margin-right: auto;
+      color: white;
+      background: rgba(0, 0, 0, 0.6);
   }
   .ground-results-viewer{
       display: flex;
       flex-direction: row;
       margin-top: 30px;
+      padding: 10px;
       margin-bottom: 30px;
       flex-wrap: wrap;
   }
@@ -307,7 +376,7 @@
       display: flex;
       flex-wrap: wrap;
   }
-  .ground-profile-interests{
+/*  .ground-profile-interests{
       height: 150px;
       display: flex;
       flex-direction: row;
@@ -315,8 +384,8 @@
       justify-content: flex-start;
       scrollbar-width:none;
       margin: auto;
-  }
-  .ground-activity{
+  }*/
+  /*.ground-activity{
       border-radius: 5px;
       font-size: 20px;
       height: 150px;
@@ -333,8 +402,8 @@
       display: flex;
       align-items: center;        
       justify-content: center;
-  }
-  .ground-activities-holder{
+  }*/
+/*  .ground-activities-holder{
       height: 200px;
       display: flex;
       width: 100%;
@@ -345,12 +414,12 @@
       -ms-overflow-style: none;
       margin-top: 30px;
       margin-bottom: 30px;
-  }
+  }*/
   /*-------------------------*/
-  .new-ground-interests{
+  /*.new-ground-interests{
       width: 300px;
       margin-bottom: 30px;
-  }
+  }*/
   .new-ground-profile-textbox{
       margin-left: auto;
       margin-right: auto;
@@ -381,8 +450,9 @@
   }
   .new-ground-interests-holder{
       margin: auto;
-      width: 200px;
-      height: 300px;
+      width: auto;
+      /*height: 300px;*/
+      max-width: 400px;
       display: flex;
       flex-direction: column;
       overflow-y: scroll;
@@ -391,6 +461,7 @@
   .new-ground-interest-checkbox-holder{
       height: 50px;
       /*background: red;*/
+      /*width: auto;*/
   }
   .new-ground-interest-name{
       margin: 3px;
@@ -420,12 +491,12 @@
       width: 100vw;
       margin: auto;
   }
-  .ground-profile-location{
+/*  .ground-profile-location{
       margin-top: 10px;
       margin-bottom: 10px;
       padding: 20px;
       width: 100%;
-  }
+  }*/
   .smaller-title{
       font-size: 20px;
   }
@@ -474,7 +545,7 @@
     flex-direction: column;
     justify-content: center;
   }
-  .gp-interests-holder{
+/*  .gp-interests-holder{
     margin: auto;
     width: 200px;
     height: 150px;
@@ -482,15 +553,15 @@
     flex-direction: column;
     overflow-y: scroll;
     scrollbar-width:none;
-  }
-  .gp-intrest-checkbox-holder{
+  }*/
+ /* .gp-intrest-checkbox-holder{
     height: 40px;
-  }
-  .gp-interest-name{
+  }*/
+/*  .gp-interest-name{
     margin: 8px;
     font-size: 19px;
-  }
-  .gp{
+  }*/
+/*  .gp{
     height: 100%;
     width: 100vw;
     display: flex;
@@ -498,8 +569,8 @@
     align-content: center;
     align-items: center;
     text-align: left;
-  }
-  .gp-title-holder{
+  }*/
+/*  .gp-title-holder{
     width: 100vw;
   }
   .gp-title{
@@ -507,35 +578,35 @@
     text-align: left;
     padding: 2%;
     margin-bottom: 30px;
-  }
-  .gp-name{
+  }*/
+/*  .gp-name{
     font-size: 25px;
     width: 100vw;
     margin: auto;
-  }
+  }*/
   .gp-location{
     width: 100%;
   }
   .smaller-title{
     font-size: 20px;
   }
-  .gp-contact{
+  /*.gp-contact{
     width: 100vw;
     margin: auto;
-  }
-  .gp-activities{
+  }*/
+  /*.gp-activities{
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 20px;
-  }
-  .gp-cph{
+  }*/
+  /*.gp-cph{
     margin-top: 10px;
     margin-bottom: 10px;
-  }
-  .gp-reservation-form-holder{
+  }*/
+  /*.gp-reservation-form-holder{
       margin-top: 10px;
       margin-bottom: 10px;
-  }
+  }*/
   .gp-main{
       padding-right: 10px;
       padding-left: 10px;
@@ -565,7 +636,7 @@
       border-width: 0.6px;
       border-color: lightgray;
       border-radius: 3%;
-      width: 400px;
+      /*width: 400px;*/
       margin: 7px;
   }   
   .reservations-history-res-btn{
@@ -640,26 +711,27 @@
     /*justify-content: center;*/
     align-items: center;
     /*background-color: #dedede;*/
-    background: #e9ecef;
+    /*background: #e9ecef;*/
+    background-color:rgba(233, 236, 239, 0.8);
     border-radius: 20px;
     padding: 30px;
-    width: 350px;
+    width: auto;
     margin: 10px;
-    /*height: 600px;*/
+    height: auto;
   }
   .gp-tb-holder{
     padding: 1%;
     max-width: 200px;
   }
-  .gp-activities-holder{
+  /*.gp-activities-holder{
       display: flex;
       justify-content: flex-start;
       align-items: flex-start;
       width: 100%;
       height: 500px;
-  }
+  }*/
   .gp-interests{
-     height:500px;
+     /*height:500px;*/
       width: 300px;
       display: flex;
       /*flex-direction: column;*/
@@ -705,12 +777,12 @@
     justify-content: space-between;
     align-items: flex-start;
     padding: 15px;
-    height: 250px;
+    /*height: 250px;*/
     border-style: solid;
     border-width: 0.6px;
     border-color: lightgray;
     border-radius: 3%;
-    width: 275px;
+    /*width: 275px;*/
     margin: 7px;
   }
   .favorite-grounds-holder{
@@ -723,12 +795,10 @@
     flex-wrap: wrap;
     padding: 1%;
     margin-left: 0;
+
     margin-right: 0;
     padding: 0;
     /*width: 90%;*/
-  }
-  .favorites-list-body{
-    padding: 2%;
   }
   .reservation-history-body{
     padding: 2%;
@@ -764,6 +834,20 @@
     width: 300px;
     margin: 10px;
   }
+  .signin-textboxes-holder{
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;*/
+    align-items: center;
+    /*background-color: #dedede;*/
+    background: #e9ecef;
+    /*justify-content: space-between;*/
+    /*width: 600px;*/
+    border-radius: 20px;
+    padding: 30px;
+    width: 100%;
+    margin: 10px;
+  }
   .home-navbar{
     background: #1B1212;
     /*background: red;*/
@@ -774,6 +858,7 @@
     position: sticky;
     padding-right: 2%;
     top: 0;
+    z-index: 5;
   }
   .sidebar {padding-top: 15px;}
   .sidebar a {font-size: 18px;}
@@ -790,6 +875,53 @@
   .logo{
     display: none;
   }
+  .home-btn-holder{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 60px;
+  }
+  .favorite-ground-post-btn-holder{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .custom-jumbotron{
+    background-color:rgba(233, 236, 239, 0.7);
+    border-radius: 30px;
+    margin-bottom: 2rem;
+    padding:2rem 1rem;
+    margin-bottom:2rem;
+    border-radius:.3rem;
+    padding-right:0;
+    padding-left:0;
+  }
+  .show-ground-textboxes-holder{
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;*/
+    align-items: center;
+    /*background-color: #dedede;*/
+    /*background: #e9ecef;*/
+    background-color:rgba(233, 236, 239, 0.8);
+    border-radius: 20px;
+    padding: 30px;
+    width: auto;
+    /*margin: auto;*/
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: auto;
+  }
+  .signin-background{
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    background-image: url('signin-mobile-image.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .logo{
+    display: none;
+  }
 }
 
 
@@ -798,19 +930,12 @@
 
 
 
-
-
-
-
-
-
 /*----------------------------*/
 /*----------------------------*/
 /*----------------------------*/
 /*----------------------------*/
 /*----------------------------*/
 /*----------------------------*/
-
 
 
 
@@ -820,16 +945,90 @@
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 550px) {
-  .background-home-image{
-    background-image: url("title-image.jpg");
+  .shortlogo{
+    display: none;
+  }
+  .logo{
+    width: auto;
+    color: white;
+    padding-left:2%;
+    padding-right: 2%;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    display: block;
+  }
+  .background-front-image{
+    background-image: url("title-image1.jpg");
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 100%;
-    width: 100%;
   }
-  .super-title{
-    font-size: 30px;
-    font-weight: 600;
+  .home-container{
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    background-image: url('home-background-image1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .ground-creation-background{
+    background-image: url("ground-creation-background.jpg");
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .ground-profile-background{
+    background-image: url("ground-profile-background.jpg");
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .user-profile-background{
+    background-image: url("user-profile-background.jpg");
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .user-profile-edit-background{
+    background-image: url("user-profile-edit.jpg");
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .reservation-history-background{
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("reservation-history-background.jpg");
+  }
+  .favorite-list-background{
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("favorite-list-background.jpg");
+  }
+  .ground-result-background{
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("ground-result-background1.jpg");    
   }
   .home-guest-body{
     padding: 2%;
@@ -842,43 +1041,62 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    height: 120px;
+    /*height: 120px;*/
     border-style: solid;
     border-width: 0.6px;
     border-color: lightgray;
     border-radius: 3%;
-    width: 320px;
-    margin: 7px;
+    width: auto;
     color: #EFFFFB;
-    /*background-color:#50D890;*/
+  }
+  .grid-container{
+    display: grid;
+    /*width: auto;*/
+    grid-column-gap: 5px;
+    grid-row-gap:15px;
+    grid-template-columns: auto auto auto;
+    background-color: #2196F3;
+    padding: 10px;
+  }
+  .custom-jumbotron{
+    background-color:rgba(233, 236, 239, 0.8);
+    border-radius: 30px;
+    margin-bottom: 2rem;
+    padding:2rem 1rem;
+    margin-bottom:2rem;
+    border-radius:.3rem;
+    padding-right:0;
+    padding-left:0;
   }
   .home-ground-admin-post{
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 15px;
-    height: 160px;
+    /*height: 160px;*/
     border-style: solid;
     border-width: 0.6px;
-    border-color: #50D890;
+    border-color: grey;
     /*background: green;*/
     border-radius: 3%;
-    width: 300px;
+    /*width: 300px;*/
     margin-top: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
+    background: rgba(0, 0, 0, 0.1);
+    /*margin-left: 0.5px;*/
+    /*margin-right: 0.5px;*/
     margin-bottom: 10px;
     text-align: center;
-    justify-content: space-around;
+    justify-content: center;
   }
   .admin-reservations-holder{
     display: flex;
     /*flex-direction: column;*/
     flex-wrap: wrap;
-    justify-content: flex-start;
+    /*justify-content: flex-start;*/
     align-items: center;
-    margin: auto;
-    width: 91%;
+    /*margin: auto;*/
+    width: auto;
+    padding: 20px;
   }
   .check-in-btn{
     background: #50D890;
@@ -900,7 +1118,7 @@
     border-width: 0.5px;
     border-color: lightgray;
     border-radius:10px;
-    color: white;
+    color: black;
     height: 40px;
     width: 100px;
   }
@@ -908,6 +1126,11 @@
     text-decoration: none;
     background: #50D890;
     color: white;
+  }
+  .checked-in-btn:hover{
+    text-decoration: none;
+    background: #50D890;
+    color: black;
   }
   .home-admin-reservation-btn-holder{
     display: flex;
@@ -954,11 +1177,7 @@
       margin-bottom: 30px;
       margin-top: 30px;
   }
-  .home-container{
-      height: 100vh;
-      width: 100%;
-      overflow-x: hidden;
-  }
+  
   .user-interest-holder{
       /*height: 300px;*/
       display: flex;
@@ -1009,10 +1228,10 @@
       align-items: center;        
       justify-content: center;
   }
-  .edit-interests{
+  /*.edit-interests{
       width: 300px;
       margin-bottom: 30px;
-  }
+  }*/
   .edit-profile-textbox{
       margin-left: auto;
       margin-right: auto;
@@ -1044,7 +1263,7 @@
       flex-direction: column;
       justify-content: center;
   }
-  .edit-interests-holder{
+  /*.edit-interests-holder{
       margin: auto;
       width: 200px;
       height: 150px;
@@ -1052,16 +1271,18 @@
       flex-direction: column;
       overflow-y: scroll;
       scrollbar-width:none;
-  }
-  .edit-intrest-checkbox-holder{
+  }*/
+  /*.edit-intrest-checkbox-holder{
       height: 40px;
-  }
-  .edit-interest-name{
+  }*/
+  /*.edit-interest-name{
       margin: 8px;
       font-size: 19px;
-  }
+  }*/
   .ground-result-post-title{
       font-size: 25px;
+      margin-top: 10px;
+      margin-bottom: 10px;
   }
   .ground-result-post-subtitle{
       font-size: 20px;
@@ -1072,13 +1293,15 @@
       justify-content: space-between;
       align-items: flex-start;
       padding: 15px;
-      height: 250px;
+      /*height: 200px;*/
       border-style: solid;
       border-width: 0.6px;
       border-color: lightgray;
       border-radius: 3%;
-      width: 275px;
-      margin: 7px;
+      /*width: 275px;*/
+      /*margin: 7px;*/
+      color: white;
+      background: rgba(0, 0, 0, 0.6);
   }
   .ground-results-viewer{
       display: flex;
@@ -1094,8 +1317,6 @@
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-
-      width: 89%;
       margin-top: 30px;
   }
   .welcome-note-container{
@@ -1105,7 +1326,7 @@
       padding-left: 10px;
       padding-right: 10px;
       width: 100%;
-      height: 50px;
+      /*height: 50px;*/
       margin-top: 10px;
       margin-bottom: 10px;
       background-color: #b1fe97;
@@ -1136,7 +1357,8 @@
       /*flex-direction: column;*/
       flex-wrap: wrap;
       justify-content: center;
-      align-items: center;
+      /*align-items: center;*/
+      height: auto;
       margin: 20px;
   }
   .new-ground-tb-lables{
@@ -1152,8 +1374,9 @@
   }
   .new-ground-interests-holder{
       margin: auto;
-      width: 200px;
-      height: 500px;
+      /*width: 200px;*/
+      /*height: 500px;*/
+      max-height: 600px;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -1168,9 +1391,9 @@
       font-size: 23px;
       display: inline-block;
   }
- /* .home-navbar{
+  /*.home-navbar{
       background: #1B1212;
-      /*background: red;*/
+      background: red;
       align-items: center;
       display: flex;
       justify-content: space-between;
@@ -1180,76 +1403,78 @@
       top: 0;
   }*/
   /*------------------GROUND PROFILE--------------*/
-  .gp-profile-textbox{
+  /*.gp-profile-textbox{
       margin-left: auto;
       margin-right: auto;
-  }
+  }*/
   .gp-textbox-holder{
       padding: auto;
       margin: 10px;
+      /*width: 100%;*/
   }
-  .gp-textboxes-holder{
+  /*.gp-textboxes-holder{
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-  }
-  .gp-tb-lables{
-      /*font-weight: bold;*/
+  }*/
+  /*.gp-tb-lables{
+      font-weight: bold;
       font-size: 20px;
-  }
-  .gp-interests-holder{
+  }*/
+  /*.gp-interests-holder{
       margin: auto;
       width: 200px;
       height: 170px;
       display: flex;
       flex-direction: column;
-  }
-  .gp-intrest-checkbox-holder{
+  }*/
+  /*.gp-intrest-checkbox-holder{
       height: 40px;
-  }
-  .gp-interest-name{
+  }*/
+  /*.gp-interest-name{
       margin: 8px;
       font-size: 19px;
-  }
-  .gp-title{
+  }*/
+  /*.gp-title{
       font-weight: bold;
       text-align: left;
       padding: 2%;
       margin-bottom: 30px;
-  }
-  .gp-name{
+  }*/
+  /*.gp-name{
       font-size: 25px;
       width: 100vw;
       margin: auto;
-  }
+  }*/
   .gp-location{
     width: 200px;
   }
   .gp-smaller-title{
       font-size: 20px;
+      width: 200px;
   }
 
-  .gp-contact{
+  /*.gp-contact{
       width: 100vw;
       margin: auto;
-  }
-  .gp-ground-title{
+  }*/
+  /*.gp-ground-title{
       font-size: 26px;
-  }
-  .gp-activities{
+  }*/
+  /*.gp-activities{
       margin-top: 10px;
       margin-bottom: 10px;
       padding: 20px;
-  }
-  .gp-cph{
+  }*/
+  /*.gp-cph{
       margin-top: 10px;
       margin-bottom: 10px;
-  }
-  .gp-reservation-form-holder{
+  }*/
+  /*.gp-reservation-form-holder{
       margin-top: 10px;
       margin-bottom: 10px;
-  }
+  }*/
   .gp-main{
       padding: 2%;
       width: 100%;
@@ -1262,8 +1487,11 @@
     justify-content: center;
   }
   .gp-interests{
-      height:400px;
-      width: 300px;
+      /*height:400px;*/
+      /*width: 300px;*/
+      min-width:300px ;
+      max-height: 400px;
+      /*max-height: 400px;*/
       display: flex;
       flex-direction: column;
       overflow-x: scroll;
@@ -1272,13 +1500,13 @@
       /*align-items: center;*/
       flex-wrap: wrap;
   }
-  .gp-activities-holder{
+  /*.gp-activities-holder{
       display: flex;
       justify-content: flex-start;
       align-items: flex-start;
       width: 100%;
       height: 400px;
-  }
+  }*/
   /*-------------------RESERVATION HISTORY---------------------*/
   .reservations-history-post-info-holder{
       display: flex;
@@ -1296,9 +1524,10 @@
       border-style: solid;
       border-width: 0.6px;
       border-color: lightgray;
+      background: rgba(0, 0, 0, 0.6);
       border-radius: 3%;
-      width: 400px;
-      margin: 7px;
+      /*width: 400px;*/
+      /*margin:auto;*/
   }   
   .reservations-history-res-btn{
       margin: 20px;
@@ -1316,7 +1545,7 @@
       justify-content: flex-start;
       align-items: center;
       /*padding: auto;*/
-      width: 91%;
+      /*width: 95%;*/
       margin: 20px;
   }
   .reservations-history-post-datetime-holder{
@@ -1333,10 +1562,11 @@
     display: flex;
     /*flex-direction: column;*/
     flex-wrap: wrap;
-    justify-content: flex-start;
+    /*justify-content: flex-start;*/
     align-items: center;
-    margin: auto;
-    width: 91%;
+    /*margin: auto;*/
+    margin: none;
+    width: auto;
   }
   .reservations-history-post-datetime-holder{
       display: flex;
@@ -1374,18 +1604,48 @@
   .user-profile-title-holder{
       width: 100%;
   }
-  .user-profile-components-holder{
+  /*.user-profile-components-holder{
       width: 250px;
       margin: auto;
       display: flex;
       flex-direction: column;
       justify-content: space-around;
-  }
+  }*/
   .user-profile-info-holder{
       display: flex;
       flex-direction: column;
       justify-content: center;
       margin: 20px;
+  }
+  .textboxes-holder{
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;*/
+    align-items: center;
+    /*background-color: #dedede;*/
+    /*background: #e9ecef;*/
+    background-color:rgba(233, 236, 239, 0.8);
+    border-radius: 20px;
+    padding: 30px;
+    width: auto;
+    margin: 10px;
+    height: auto;
+  }
+  .show-ground-textboxes-holder{
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;*/
+    align-items: center;
+    /*background-color: #dedede;*/
+    /*background: #e9ecef;*/
+    background-color:rgba(233, 236, 239, 0.8);
+    border-radius: 20px;
+    padding: 30px;
+    width: auto;
+    /*margin: auto;*/
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: auto;
   }
   .user-profile-smaller-title{
       font-size: 24px;
@@ -1426,24 +1686,13 @@
       margin-top: 30px;
       margin-bottom: 30px;
       text-align: center;
+      width: 100%;
   }
   .new-ground-interest-checkbox-holder{
       height: 50px;
       /*background: red;*/
       /*margin: 20px;*/
-  }
-  .textboxes-holder{
-    display: flex;
-    flex-direction: column;
-    /*justify-content: center;*/
-    align-items: center;
-    /*background-color: #dedede;*/
-    background: #e9ecef;
-    border-radius: 20px;
-    padding: 30px;
-    width: 350px;
-    margin: 10px;
-    height: 600px;
+      /*width: auto;*/
   }
   .gp-tb-holder{
     padding: 1%;
@@ -1451,6 +1700,11 @@
   }
   .favorites-list-body{
     padding: 2%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /*justify-content: center;*/
+    /*align-items: center;*/
   }
   .favorites-content-holder{
     display: flex;
@@ -1469,13 +1723,13 @@
     align-items: center;
     flex-wrap: wrap;
     padding: 1%;
-    margin-left: 0;
-    margin-right: 0;
+    margin: 20px;
     padding: 0;
-    width: 90%;
+    /*width: auto;*/
   }
-  .favorites-list-body{
-    padding: 2%;
+  .favorite-ground-post-btn-holder{
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
   .favorite-ground-post{
     display: flex;
@@ -1483,13 +1737,14 @@
     justify-content: space-between;
     align-items: flex-start;
     padding: 15px;
-    height: 250px;
+    /*height: 200px;*/
     border-style: solid;
     border-width: 0.6px;
     border-color: lightgray;
     border-radius: 3%;
-    width: 275px;
-    margin: 7px;
+    /*width: 275px;*/
+    background: rgba(0, 0, 0, 0.5);
+    /*margin: 7px;*/
   }
   .gp-jumbotron{
     display: flex;
@@ -1497,7 +1752,7 @@
     align-items: flex-start;
   }
   .gp-smaller-title{
-    width: 200px;
+    /*width: 200px;*/
   }
   .ground-profile-viewer{
     display: flex;
@@ -1529,6 +1784,13 @@
     padding: 2.5%;
     width: 100%;
   }
+  .home-btn-holder{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 100px;
+  }
+
   .owned-grounds-holder{
     display: flex;
     flex-direction: row;
@@ -1541,9 +1803,6 @@
     margin-right: 0;
     padding: 0;
     width: 90%;
-  }
-  .reservations-history-body{
-    padding: 2%;
   }
   .signup-body{
     height: 90vh;
@@ -1565,12 +1824,31 @@
     background: #e9ecef;
     border-radius: 20px;
     padding: 30px;
-    width: 350px;
+    /*width: 350px;*/
+    margin: 10px;
+  }
+  .signin-background{
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    background-image: url('stadium.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .signin-textboxes-holder{
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;*/
+    align-items: center;
+    /*background-color: #dedede;*/
+    background: #e9ecef;
+    border-radius: 20px;
+    padding: 30px;
+    width: 100%;
     margin: 10px;
   }
   .home-navbar{
     background: #1B1212;
-    /*background: red;*/
     align-items: center;
     display: flex;
     justify-content: space-between;
@@ -1578,6 +1856,7 @@
     position: sticky;
     padding-right: 2%;
     top: 0;
+    z-index: 5;
   }
 }
 /*.background-color-green{
@@ -1608,12 +1887,7 @@
   width: 200px;
   margin-top: 10px;
 }
-.contact-info-tb-holder{
-  height: 300px;
-}
-.reservation-tb-holder{
-  height: 300px;
-}
+
 
 
 /*----------------------------*//*----------------------------*/
@@ -1630,10 +1904,11 @@
     padding: 2%;
 }
 .reservations-history-body{
+  padding: 2%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  /*justify-content: center;*/
+  /*align-items: center;*/
 }
 
 .home-body{
@@ -1642,9 +1917,9 @@
 .pointer{
     cursor: pointer;
 }
-.res-cancel-btn{
+/*.res-cancel-btn{
   width: 20%;
-}
+}*/
 .home-reservation-post-info-holder{
     display: flex;
     flex-direction: column;
@@ -1667,7 +1942,7 @@
   border-radius: 10px;
   border-width: 0.5px;
   border-color: #218838;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.6);
   text-align: center;
   padding: 20px;
   font-size: 23px;
@@ -1690,7 +1965,7 @@
   border-radius: 10px;
   border-width: 0.5px;
   border-color: #218838;
-  background-color: transparent;
+  background-color:rgba(0, 0, 0, 0.6);
   text-align: center;
   padding: 20px;
   font-size: 23px;
@@ -1743,7 +2018,7 @@
     flex-direction: column;
     padding-top: auto;
 }
-.login-body{
+/*.login-body{
     border-radius: 5%;
     border-style: solid;
     border-width: 1;
@@ -1758,7 +2033,7 @@
     align-items: center;
     text-align: center;
     margin: auto;
-}
+}*/
 /*------------------------------------SIGNUP--------------------------------*/
 .signup-container{
   display:flex; 
@@ -1785,7 +2060,7 @@
 }
 .signup-textbox-holder{
   padding: auto;
-  width: 180px;
+  margin: 10px;
 }
 .signup-holder{
     height: 100%;
@@ -1816,6 +2091,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
 }
 .search-button{
     width: 70px;
@@ -1831,17 +2107,9 @@
   display: flex;
   justify-content: center;
 }
-.logo{
-    width: 35%;
-    color: white;
-    padding-left:2%;
-    padding-right: 2%;
-    font-size: 22px;
-    font-weight: bold;
-    cursor: pointer;
-}
+
 .favorite-button-div{
-    width: 100px;
+    width: auto;
     padding-right: 50px;
 }
 .favorite-button{
@@ -1852,7 +2120,7 @@
   height: 100%; /* 100% Full-height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Stay on top */
+  z-index: 6; /* Stay on top */
   top: 0;
   left: 0;
   display: flex;
@@ -1919,67 +2187,8 @@
     text-align: center;
     padding: auto;
 }
-.shortlogo{
-    display: none;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-width: 550px) {
-  .sidebar {padding-top: 15px;}
-  .sidebar a {font-size: 18px;}
-  .shortlogo{
-    display: block;
-    color: white;
-    padding-left:2%;
-    padding-right: 2%;
-    font-size: 22px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  .logo{
-    display: none;
-  }
-  .secondary-title{
-    font-size: 26px;
-  }
-  .main-title{
-    font-size: 35px;
-  }
-  .lead-title{
-    font-size: 15px;
-  }
-  .tb-holder-title{
-      font-size: 30px;
-      margin-top: 20px;
-      margin-bottom: 20px;
-      text-align: center;
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
 .currency-symbol-holder{
   font-size: 20px;
   padding-left: 7.5px;
@@ -2076,6 +2285,12 @@
     position:absolute;
     right:0;
     top:0
+}
+#ground-opening-time-5i{
+  display: none;
+}
+#ground-closiing-time-5i{
+  display: none;
 }
 .options-title{
   display: flex;

@@ -1,35 +1,36 @@
-<%= render 'pages/header'%>
-<div class="favorites-list-body">
-	<div class="favorites-content-holder">
-		<div class="jumbotron jumbotron-fluid w-100">
-		  <div class="container">
-		    <h1 class=" main-title">Favorites List</h1>
-		    <p class="lead-title">This is a list of all the grounds you like.</p>
-		  </div>
-		</div>
-		<div class="favorite-grounds-holder">
-			<% if @favorite_grounds != []%>
-				<% @favorite_grounds.each do |fav_ground| %>
-					<div class="favorite-ground-post">
-						<div class="ground-result-post-title">
-							<% ground_name = fav_ground.ground_name %>
-							<span><%= ground_name[0..15] %></span>
-						</div>
-						<% if fav_ground.location %>
-							<div>
-								<div class="ground-result-post-subtitle">Location:</div>
-								<% ground_location = fav_ground.location%>
-								<div><%= ground_location[0..50] %></div>
+<div class="favorite-list-background">
+	<%= render 'pages/header'%>
+	<div class="favorites-list-body">
+			<div class="custom-jumbotron w-100">
+			  <div class="container">
+			    <h1 class=" main-title">Favorites List</h1>
+			    <p class="lead-title">This is a list of all the grounds you like.</p>
+			  </div>
+			</div>
+			<div class="favorite-grounds-holder">
+				<% if @favorite_grounds != []%>
+					<% @favorite_grounds.each do |fav_ground| %>
+						<div class="favorite-ground-post col-lg-4 col-sm-12" style="color:white;">
+							<div class="ground-result-post-title">
+								<% ground_name = fav_ground.ground_name %>
+								<span><%= ground_name[0..15] %></span>
 							</div>
-						<% end %>
-						<div>
-							<%= link_to 'RESERVE', fav_ground, class: "btn btn-success cancel-btn"%>
+							<% if fav_ground.location %>
+								<div>
+									<div class="ground-result-post-subtitle">Location:</div>
+									<% ground_location = fav_ground.location%>
+									<div><%= ground_location[0..50] %></div>
+								</div>
+							<% end %>
+							<div class="favorite-ground-post-btn-holder">
+								<%= link_to 'VISIT', fav_ground, class: "btn btn-success cancel-btn"%>
+							</div>
 						</div>
-					</div>
+					<% end %>
+				<% elsif @favorite_grounds == [] %>
+					<h3>YOU HAVE NO FAVORITE GROUNDS SELECTED</h3>
 				<% end %>
-			<% elsif @favorite_grounds == [] %>
-				<h3>YOU HAVE NO FAVORITE GROUNDS SELECTED</h3>
-			<% end %>
-		</div>		
+			</div>		
 	</div>
+	
 </div>
