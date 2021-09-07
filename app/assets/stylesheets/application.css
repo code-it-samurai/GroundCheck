@@ -19,9 +19,7 @@
     overflow-x: hidden;
     scrollbar-width:none;
  }
- /* Extra small devices (phones, 600px and down) */
 @media screen and (max-width: 550px) {
-/*@media only screen and (max-width: 550px) {*/
   .background-front-image{
     background-image: url("title-image1.jpg");
     height: 100vh;
@@ -116,11 +114,9 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    /*height: 120px;*/
     border-style: solid;
     border-width: 0.6px;
     border-color: lightgray;
-    /*background: green;*/
     border-radius: 3%;
     width: auto;
     margin-left: auto;
@@ -132,24 +128,18 @@
     flex-direction: column;
     align-items: center;
     padding: 15px;
-    /*height: 160px;*/
     border-style: solid;
     border-width: 0.6px;
     border-color: grey;
-    /*background: green;*/
     border-radius: 3%;
-    /*width: 300px;*/
     margin-top: 10px;
     background: rgba(0, 0, 0, 0.1);
-    /*margin-left: 0.5px;*/
-    /*margin-right: 0.5px;*/
     margin-bottom: 10px;
     text-align: center;
     justify-content: center;
   }
   .admin-reservations-holder{
     display: flex;
-    /*flex-direction: column;*/
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
@@ -192,7 +182,6 @@
   .home-admin-reservation-btn-holder{
     display: flex;
     width: 100%;
-    /*align-items: flex-start;*/
   }
   .home-admin-reservation-activity{
     text-align: left;
@@ -233,7 +222,6 @@
       background-repeat: no-repeat;
   }
   .user-interest-holder{
-      /*height: 300px;*/
       display: flex;
       width: 100%;
       flex-direction: column;
@@ -244,13 +232,10 @@
       margin-bottom: 30px;
   }
   .home-user-interests{
-      /*width: 320px;*/
       flex-direction: row;
       overflow-x: scroll;
-      /*height: 200px;*/
       display: flex;
       flex-direction: row;
-      /*min-width: 400px;*/
       justify-content: flex-start;
       margin: auto;
   }
@@ -259,246 +244,154 @@
   }
 
   .activity{
-      margin-top: 10px;
-      margin-bottom: 10px;
-      border-radius: 5px;
-      font-size: 20px;
-      height: 100px;
-      min-width: 120px;
-      max-width: 120px;
-      text-align: center;
-      color: black;
-      border-style: solid;
-      border-width: 0.2px;
-      border-color: lightgray;
-      cursor: pointer;
-      margin-left: 10px;
-      margin-right: 10px;
-      display: flex;
-      align-items: center;        
-      justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 20px;
+    height: 100px;
+    min-width: 120px;
+    max-width: 120px;
+    text-align: center;
+    color: black;
+    border-style: solid;
+    border-width: 0.2px;
+    border-color: lightgray;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;        
+    justify-content: center;
   }
-/*  .edit-interests{
-      width: 300px;
-      margin-bottom: 30px;
-  }*/
   .edit-profile-textbox{
-      margin-left: auto;
-      margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
   }
   .edit-textbox-holder{
-      padding: auto;
-      margin: 10px;
+    padding: auto;
+    margin: 10px;
   }
-/*  .edit-textboxes-holder{
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-  }*/
-  /*.edit-tb-lables{
-      font-weight: bold;
-  }*/
   .edit-user-holder{
-      display: flex;
-      margin: auto;
-      /*width: 300px;*/
-      /*flex-direction: column;*/
-      justify-content: center;
+    display: flex;
+    margin: auto;
+    justify-content: center;
   }
-  /*.edit-interests-holder{
-      margin: auto;
-      width: 200px;
-      height: 150px;
-      display: flex;
-      flex-direction: column;
-      overflow-y: scroll;
-  }*/
-  /*.edit-intrest-checkbox-holder{
-      height: 40px;
-  }*/
-  /*.edit-interest-name{
-      margin: 8px;
-      font-size: 19px;
-  }*/
   .welcome-note-container{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-left: 10px;
-      padding-right: 10px;
-      width: 100%;
-      /*height: 50px;*/
-      margin-top: 10px;
-      margin-bottom: 10px;
-      background-color: #b1fe97;
-      border-style: solid;
-      border-color: transparent;
-      border-width: 0.5px;
-      border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+    height: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #b1fe97;
+    border-style: solid;
+    border-color: transparent;
+    border-width: 0.5px;
+    border-radius: 10px;
   }
   .home-welcome-note{
-      font-size: 5vw;
+    font-size: 5vw;
   }
   .ground-result-post-title{
-      font-size: 25px;
+    font-size: 25px;
   }
   .ground-result-post-subtitle{
-      font-size: 20px;
+    font-size: 20px;
   }
   .ground-result-post{
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: flex-start;
-      padding: 15px;
-      /*height: 200px;*/
-      border-style: solid;
-      border-width: 0.6px;
-      border-color: lightgray;
-      border-radius: 3%;
-      /*width: 275px;*/
-      margin: 10px;
-      margin-left: auto;
-      margin-right: auto;
-      color: white;
-      background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 15px;
+    border-style: solid;
+    border-width: 0.6px;
+    border-color: lightgray;
+    border-radius: 3%;
+    margin: 10px;
+    color: white;
+    background: rgba(0, 0, 0, 0.6);
   }
   .ground-results-viewer{
-      display: flex;
-      flex-direction: row;
-      margin-top: 30px;
-      padding: 10px;
-      margin-bottom: 30px;
-      flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
   }
   .ground-results-holder{
-      display: flex;
-      flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
   }
-/*  .ground-profile-interests{
-      height: 150px;
-      display: flex;
-      flex-direction: row;
-      overflow-x: scroll;
-      justify-content: flex-start;
-      scrollbar-width:none;
-      margin: auto;
-  }*/
-  /*.ground-activity{
-      border-radius: 5px;
-      font-size: 20px;
-      height: 150px;
-      min-width: 120px;
-      max-width: 120px;
-      text-align: center;
-      color: black;
-      border-style: solid;
-      border-width: 0.2px;
-      border-color: lightgray;
-      cursor: pointer;
-      margin-left: 10px;
-      margin-right: 10px;
-      display: flex;
-      align-items: center;        
-      justify-content: center;
-  }*/
-/*  .ground-activities-holder{
-      height: 200px;
-      display: flex;
-      width: 100%;
-      flex-direction: column;
-      border-width: 1px;
-      margin-left: auto;
-      margin-right: auto;
-      -ms-overflow-style: none;
-      margin-top: 30px;
-      margin-bottom: 30px;
-  }*/
-  /*-------------------------*/
-  /*.new-ground-interests{
-      width: 300px;
-      margin-bottom: 30px;
-  }*/
   .new-ground-profile-textbox{
-      margin-left: auto;
-      margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
   }
   .new-ground-textbox-holder{
-      padding: auto;
-      margin: 10px;
+    padding: auto;
+    margin: 10px;
   }
   .new-ground-textboxes-holder{
-      display: flex;
-      /*flex-direction: column;*/
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      margin: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
   }
   .new-ground-tb-lables{
-      /*font-weight: bold;*/
-      font-size: 20px;
+    font-size: 20px;
   }
   .new-ground-holder{
-      display: flex;
-      margin: auto;
-      /*width: 350px;*/
-      flex-direction: column;
-      justify-content: center;
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    justify-content: center;
   }
   .new-ground-interests-holder{
-      margin: auto;
-      width: auto;
-      /*height: 300px;*/
-      max-width: 400px;
-      display: flex;
-      flex-direction: column;
-      overflow-y: scroll;
-      /*scrollbar-width:none;*/
+    margin: auto;
+    width: auto;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
   }
   .new-ground-interest-checkbox-holder{
-      height: 50px;
-      /*background: red;*/
-      /*width: auto;*/
+    height: 50px;
   }
   .new-ground-interest-name{
-      margin: 3px;
-      font-size: 22px;
-      display: inline-block;
+    margin: 3px;
+    font-size: 22px;
+    display: inline-block;
   }
   .ground-profile{
-      height: 100%;
-      width: 100vw;
-      display: flex;
-      flex-direction: column;
-      align-content: center;
-      align-items: center;
-      text-align: left;
+    height: 100%;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    text-align: left;
   }
   .ground-profile-title-holder{
-      width: 100vw;
+    width: 100vw;
   }
   .ground-profile-title{
-      font-weight: bold;
-      text-align: left;
-      padding: 2%;
-      margin-bottom: 30px;
+    font-weight: bold;
+    text-align: left;
+    padding: 2%;
+    margin-bottom: 30px;
   }
   .ground-profile-name{
-      font-size: 25px;
-      width: 100vw;
-      margin: auto;
+    font-size: 25px;
+    width: 100vw;
+    margin: auto;
   }
-/*  .ground-profile-location{
-      margin-top: 10px;
-      margin-bottom: 10px;
-      padding: 20px;
-      width: 100%;
-  }*/
   .smaller-title{
-      font-size: 20px;
+    font-size: 20px;
   }
   .ground-profile-contact{
     width: 100vw;
@@ -545,147 +438,91 @@
     flex-direction: column;
     justify-content: center;
   }
-/*  .gp-interests-holder{
-    margin: auto;
-    width: 200px;
-    height: 150px;
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
-    scrollbar-width:none;
-  }*/
- /* .gp-intrest-checkbox-holder{
-    height: 40px;
-  }*/
-/*  .gp-interest-name{
-    margin: 8px;
-    font-size: 19px;
-  }*/
-/*  .gp{
-    height: 100%;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    align-items: center;
-    text-align: left;
-  }*/
-/*  .gp-title-holder{
-    width: 100vw;
-  }
-  .gp-title{
-    font-weight: bold;
-    text-align: left;
-    padding: 2%;
-    margin-bottom: 30px;
-  }*/
-/*  .gp-name{
-    font-size: 25px;
-    width: 100vw;
-    margin: auto;
-  }*/
   .gp-location{
     width: 100%;
   }
   .smaller-title{
     font-size: 20px;
   }
-  /*.gp-contact{
-    width: 100vw;
-    margin: auto;
-  }*/
-  /*.gp-activities{
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 20px;
-  }*/
-  /*.gp-cph{
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }*/
-  /*.gp-reservation-form-holder{
-      margin-top: 10px;
-      margin-bottom: 10px;
-  }*/
   .gp-main{
-      padding-right: 10px;
-      padding-left: 10px;
-      padding: 20px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding: 20px;
   }
   .gp-holder{
-      display: flex;
-      margin: auto;
-      flex-direction: column;
-      justify-content: center;
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    justify-content: center;
   }
   
   /*--------------------RESERVATION HISTORY-------------------*/
   .reservations-history-post-info-holder{
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      height: 100%;
-      width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    width: 100%;
   }
   .reservations-history-post{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 15px;
-      border-style: solid;
-      border-width: 0.6px;
-      border-color: lightgray;
-      border-radius: 3%;
-      /*width: 400px;*/
-      margin: 7px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-style: solid;
+    border-width: 0.6px;
+    border-color: lightgray;
+    border-radius: 3%;
+    /*width: 400px;*/
+    margin: 7px;
   }   
   .reservations-history-res-btn{
-      margin: 20px;
+    margin: 20px;
   }
   .reservations-history-viewer{
-      display: flex;
-      flex-direction: column;
-      margin-top: 30px;
-      margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    margin-bottom: 30px;
   }
   .reservations-history-holder{
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
   }
   .reservations-history-post-datetime-holder{
-      display: flex;
-      justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
   }
   .reservations-viewer{
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      margin-top: 30px;
-      margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
   }
   .reservations-history-post-datetime-holder{
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
   }
   .reservations-history-time{
-      padding-top: 2px;
-      padding-right: 5px;
+    padding-top: 2px;
+    padding-right: 5px;
   }
   .reservations-history-ground-name{
-      font-size: 23px;
-      font-weight: bold;
-      text-align: center;
-      margin: 10px;
+    font-size: 23px;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px;
   }
   .reservations-history-small-title{
-      margin: 2px;
-      font-weight: bold;
-      font-size: 15px;
+    margin: 2px;
+    font-weight: bold;
+    font-size: 15px;
   }
   .main-title{
     font-size: 35px;
@@ -694,10 +531,9 @@
     font-size: 15px;
   }
   .secondary-title{
-      font-size: 26px;
-      margin: 10px;
-      width: 100%;
-      /*background: red;*/
+    font-size: 26px;
+    margin: 10px;
+    width: 100%;
   }
   .tb-holder-title{
       font-size: 30px;
@@ -708,10 +544,7 @@
   .textboxes-holder{
     display: flex;
     flex-direction: column;
-    /*justify-content: center;*/
     align-items: center;
-    /*background-color: #dedede;*/
-    /*background: #e9ecef;*/
     background-color:rgba(233, 236, 239, 0.8);
     border-radius: 20px;
     padding: 30px;
@@ -723,30 +556,22 @@
     padding: 1%;
     max-width: 200px;
   }
-  /*.gp-activities-holder{
-      display: flex;
-      justify-content: flex-start;
-      align-items: flex-start;
-      width: 100%;
-      height: 500px;
-  }*/
   .gp-interests{
-     /*height:500px;*/
-      width: 300px;
-      display: flex;
-      /*flex-direction: column;*/
-      overflow-y: scroll;
-      /*justify-content: space-around;*/
-      /*align-items: center;*/
-      flex-wrap: wrap;
+    width: 300px;
+    display: flex;
+    overflow-y: scroll;
+    flex-wrap: wrap;
   }
   .jumbotron-btn-div{
     display: flex;
     padding: 10px;
-    /*width: 25%;*/
     max-width: 30%;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
+  }
+  .jumbotron-btn{
+    margin: 2px;
   }
   .my-grounds-body{
     display: flex;
@@ -769,7 +594,6 @@
     margin-left: 0;
     margin-right: 0;
     padding: 0;
-    /*width: 80%;*/
   }
   .favorite-ground-post{
     display: flex;
@@ -777,12 +601,10 @@
     justify-content: space-between;
     align-items: flex-start;
     padding: 15px;
-    /*height: 250px;*/
     border-style: solid;
     border-width: 0.6px;
     border-color: lightgray;
     border-radius: 3%;
-    /*width: 275px;*/
     margin: 7px;
   }
   .favorite-grounds-holder{
@@ -798,36 +620,29 @@
 
     margin-right: 0;
     padding: 0;
-    /*width: 90%;*/
   }
   .reservation-history-body{
     padding: 2%;
   }
   .signup-body{
       height: 90vh;
-    /*width: 290px;*/
     display: flex;
     padding: 2%;
     justify-content: space-between;
     flex-direction: column;
     align-items: center;
-    /*text-align: center;*/
-    /*margin: auto;*/
   }
   .edit-user-holder{
       display: flex;
       margin: auto;
       padding: 2%;
-      /*width: 300px;*/
       flex-direction: column;
       justify-content: center;
   }
   .signup-textboxes-holder{
     display: flex;
     flex-direction: column;
-    /*justify-content: center;*/
     align-items: center;
-    /*background-color: #dedede;*/
     background: #e9ecef;
     border-radius: 20px;
     padding: 30px;
@@ -837,12 +652,8 @@
   .signin-textboxes-holder{
     display: flex;
     flex-direction: column;
-    /*justify-content: center;*/
     align-items: center;
-    /*background-color: #dedede;*/
     background: #e9ecef;
-    /*justify-content: space-between;*/
-    /*width: 600px;*/
     border-radius: 20px;
     padding: 30px;
     width: 100%;
@@ -850,7 +661,6 @@
   }
   .home-navbar{
     background: #1B1212;
-    /*background: red;*/
     align-items: center;
     display: flex;
     justify-content: space-between;
@@ -864,7 +674,6 @@
   .sidebar a {font-size: 18px;}
   .shortlogo{
     display: block;
-    /*width: 35%;*/
     color: white;
     padding-left:2%;
     padding-right: 2%;
@@ -898,15 +707,11 @@
   .show-ground-textboxes-holder{
     display: flex;
     flex-direction: column;
-    /*justify-content: center;*/
     align-items: center;
-    /*background-color: #dedede;*/
-    /*background: #e9ecef;*/
     background-color:rgba(233, 236, 239, 0.8);
     border-radius: 20px;
     padding: 30px;
     width: auto;
-    /*margin: auto;*/
     margin-top: 10px;
     margin-bottom: 10px;
     height: auto;
@@ -921,6 +726,12 @@
   }
   .logo{
     display: none;
+  }
+  .gp-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
 }
 
@@ -1041,17 +852,14 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    /*height: 120px;*/
     border-style: solid;
     border-width: 0.6px;
     border-color: lightgray;
     border-radius: 3%;
-    width: auto;
     color: #EFFFFB;
   }
   .grid-container{
     display: grid;
-    /*width: auto;*/
     grid-column-gap: 5px;
     grid-row-gap:15px;
     grid-template-columns: auto auto auto;
@@ -1073,28 +881,20 @@
     flex-direction: column;
     align-items: center;
     padding: 15px;
-    /*height: 160px;*/
     border-style: solid;
     border-width: 0.6px;
     border-color: grey;
-    /*background: green;*/
     border-radius: 3%;
-    /*width: 300px;*/
     margin-top: 10px;
     background: rgba(0, 0, 0, 0.1);
-    /*margin-left: 0.5px;*/
-    /*margin-right: 0.5px;*/
     margin-bottom: 10px;
     text-align: center;
     justify-content: center;
   }
   .admin-reservations-holder{
     display: flex;
-    /*flex-direction: column;*/
     flex-wrap: wrap;
-    /*justify-content: flex-start;*/
     align-items: center;
-    /*margin: auto;*/
     width: auto;
     padding: 20px;
   }
@@ -1136,7 +936,6 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    /*align-items: flex-start;*/
     margin-top: 10px;
   }
   .home-admin-reservation-activity{
@@ -1190,7 +989,6 @@
       margin-bottom: 30px;
   }
   .home-user-interests{
-      /*width: 320px;*/
       flex-direction: row;
       overflow-x: scroll;
       height: 200px;
@@ -1200,7 +998,6 @@
       overflow-x: scroll;
       justify-content: center;
       margin: auto;
-/*        padding-left: 140px;*/
   }
   .interests::-webkit-scrollbar {
     display: none;
@@ -1228,10 +1025,6 @@
       align-items: center;        
       justify-content: center;
   }
-  /*.edit-interests{
-      width: 300px;
-      margin-bottom: 30px;
-  }*/
   .edit-profile-textbox{
       margin-left: auto;
       margin-right: auto;
@@ -1263,22 +1056,6 @@
       flex-direction: column;
       justify-content: center;
   }
-  /*.edit-interests-holder{
-      margin: auto;
-      width: 200px;
-      height: 150px;
-      display: flex;
-      flex-direction: column;
-      overflow-y: scroll;
-      scrollbar-width:none;
-  }*/
-  /*.edit-intrest-checkbox-holder{
-      height: 40px;
-  }*/
-  /*.edit-interest-name{
-      margin: 8px;
-      font-size: 19px;
-  }*/
   .ground-result-post-title{
       font-size: 25px;
       margin-top: 10px;
@@ -1293,47 +1070,57 @@
       justify-content: space-between;
       align-items: flex-start;
       padding: 15px;
-      /*height: 200px;*/
       border-style: solid;
       border-width: 0.6px;
       border-color: lightgray;
       border-radius: 3%;
-      /*width: 275px;*/
-      /*margin: 7px;*/
       color: white;
       background: rgba(0, 0, 0, 0.6);
+  }.home-ground-admin-post{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    border-style: solid;
+    border-width: 0.6px;
+    border-color: grey;
+    border-radius: 3%;
+    margin-top: 10px;
+    background: rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    text-align: center;
+    justify-content: center;
   }
   .ground-results-viewer{
-      display: flex;
-      flex-direction: column;
-      margin-top: 30px;
-      margin-bottom: 30px;
-      align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    margin-bottom: 30px;
   }
   .groundresults-body{
     padding: 2%;
   }
   .ground-results-holder{
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 30px;
   }
   .welcome-note-container{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-left: 10px;
-      padding-right: 10px;
-      width: 100%;
-      /*height: 50px;*/
-      margin-top: 10px;
-      margin-bottom: 10px;
-      background-color: #b1fe97;
-      border-style: solid;
-      border-color: transparent;
-      border-width: 0.5px;
-      border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+    height: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #b1fe97;
+    border-style: solid;
+    border-color: transparent;
+    border-width: 0.5px;
+    border-radius: 10px;
 
   }
   .home-welcome-note{
@@ -1354,10 +1141,8 @@
   }
   .new-ground-textboxes-holder{
       display: flex;
-      /*flex-direction: column;*/
       flex-wrap: wrap;
       justify-content: center;
-      /*align-items: center;*/
       height: auto;
       margin: 20px;
   }
@@ -1367,21 +1152,16 @@
   .new-ground-holder{
       display: flex;
       margin: auto;
-      /*width: 300px;*/
       flex-direction: column;
       justify-content: center;
       padding: 2%;
   }
   .new-ground-interests-holder{
       margin: auto;
-      /*width: 200px;*/
-      /*height: 500px;*/
       max-height: 600px;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      /*overflow-y: scroll;*/
-      /*scrollbar-width:none;*/
   }
   .new-ground-intrest-checkbox-holder{
       height: 40px;
@@ -1391,62 +1171,10 @@
       font-size: 23px;
       display: inline-block;
   }
-  /*.home-navbar{
-      background: #1B1212;
-      background: red;
-      align-items: center;
-      display: flex;
-      justify-content: space-between;
-      height: 50px;
-      position: sticky;
-      padding-right: 2%;
-      top: 0;
-  }*/
-  /*------------------GROUND PROFILE--------------*/
-  /*.gp-profile-textbox{
-      margin-left: auto;
-      margin-right: auto;
-  }*/
   .gp-textbox-holder{
       padding: auto;
       margin: 10px;
-      /*width: 100%;*/
   }
-  /*.gp-textboxes-holder{
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-  }*/
-  /*.gp-tb-lables{
-      font-weight: bold;
-      font-size: 20px;
-  }*/
-  /*.gp-interests-holder{
-      margin: auto;
-      width: 200px;
-      height: 170px;
-      display: flex;
-      flex-direction: column;
-  }*/
-  /*.gp-intrest-checkbox-holder{
-      height: 40px;
-  }*/
-  /*.gp-interest-name{
-      margin: 8px;
-      font-size: 19px;
-  }*/
-  /*.gp-title{
-      font-weight: bold;
-      text-align: left;
-      padding: 2%;
-      margin-bottom: 30px;
-  }*/
-  /*.gp-name{
-      font-size: 25px;
-      width: 100vw;
-      margin: auto;
-  }*/
   .gp-location{
     width: 200px;
   }
@@ -1454,27 +1182,6 @@
       font-size: 20px;
       width: 200px;
   }
-
-  /*.gp-contact{
-      width: 100vw;
-      margin: auto;
-  }*/
-  /*.gp-ground-title{
-      font-size: 26px;
-  }*/
-  /*.gp-activities{
-      margin-top: 10px;
-      margin-bottom: 10px;
-      padding: 20px;
-  }*/
-  /*.gp-cph{
-      margin-top: 10px;
-      margin-bottom: 10px;
-  }*/
-  /*.gp-reservation-form-holder{
-      margin-top: 10px;
-      margin-bottom: 10px;
-  }*/
   .gp-main{
       padding: 2%;
       width: 100%;
@@ -1487,26 +1194,13 @@
     justify-content: center;
   }
   .gp-interests{
-      /*height:400px;*/
-      /*width: 300px;*/
       min-width:300px ;
       max-height: 400px;
-      /*max-height: 400px;*/
       display: flex;
       flex-direction: column;
       overflow-x: scroll;
-
-      /*justify-content: space-around;*/
-      /*align-items: center;*/
       flex-wrap: wrap;
   }
-  /*.gp-activities-holder{
-      display: flex;
-      justify-content: flex-start;
-      align-items: flex-start;
-      width: 100%;
-      height: 400px;
-  }*/
   /*-------------------RESERVATION HISTORY---------------------*/
   .reservations-history-post-info-holder{
       display: flex;
@@ -1520,14 +1214,11 @@
       justify-content: space-between;
       align-items: center;
       padding-bottom: 15px;
-      /*height: 120px;*/
       border-style: solid;
       border-width: 0.6px;
       border-color: lightgray;
       background: rgba(0, 0, 0, 0.6);
       border-radius: 3%;
-      /*width: 400px;*/
-      /*margin:auto;*/
   }   
   .reservations-history-res-btn{
       margin: 20px;
@@ -1540,12 +1231,9 @@
   }
   .reservations-history-holder{
       display: flex;
-      /*flex-direction: column;*/
       flex-wrap: wrap;
       justify-content: flex-start;
       align-items: center;
-      /*padding: auto;*/
-      /*width: 95%;*/
       margin: 20px;
   }
   .reservations-history-post-datetime-holder{
@@ -1560,11 +1248,8 @@
   }
   .reservations-holder{
     display: flex;
-    /*flex-direction: column;*/
     flex-wrap: wrap;
-    /*justify-content: flex-start;*/
     align-items: center;
-    /*margin: auto;*/
     margin: none;
     width: auto;
   }
@@ -1604,13 +1289,6 @@
   .user-profile-title-holder{
       width: 100%;
   }
-  /*.user-profile-components-holder{
-      width: 250px;
-      margin: auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-  }*/
   .user-profile-info-holder{
       display: flex;
       flex-direction: column;
@@ -1620,10 +1298,7 @@
   .textboxes-holder{
     display: flex;
     flex-direction: column;
-    /*justify-content: center;*/
     align-items: center;
-    /*background-color: #dedede;*/
-    /*background: #e9ecef;*/
     background-color:rgba(233, 236, 239, 0.8);
     border-radius: 20px;
     padding: 30px;
@@ -1634,15 +1309,11 @@
   .show-ground-textboxes-holder{
     display: flex;
     flex-direction: column;
-    /*justify-content: center;*/
     align-items: center;
-    /*background-color: #dedede;*/
-    /*background: #e9ecef;*/
     background-color:rgba(233, 236, 239, 0.8);
     border-radius: 20px;
     padding: 30px;
     width: auto;
-    /*margin: auto;*/
     margin-top: 10px;
     margin-bottom: 10px;
     height: auto;
@@ -1690,9 +1361,6 @@
   }
   .new-ground-interest-checkbox-holder{
       height: 50px;
-      /*background: red;*/
-      /*margin: 20px;*/
-      /*width: auto;*/
   }
   .gp-tb-holder{
     padding: 1%;
@@ -1703,8 +1371,6 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    /*justify-content: center;*/
-    /*align-items: center;*/
   }
   .favorites-content-holder{
     display: flex;
@@ -1730,6 +1396,7 @@
   .favorite-ground-post-btn-holder{
     margin-top: 10px;
     margin-bottom: 10px;
+    width: 500px;
   }
   .favorite-ground-post{
     display: flex;
@@ -1737,14 +1404,11 @@
     justify-content: space-between;
     align-items: flex-start;
     padding: 15px;
-    /*height: 200px;*/
     border-style: solid;
     border-width: 0.6px;
     border-color: lightgray;
     border-radius: 3%;
-    /*width: 275px;*/
     background: rgba(0, 0, 0, 0.5);
-    /*margin: 7px;*/
   }
   .gp-jumbotron{
     display: flex;
@@ -1752,7 +1416,6 @@
     align-items: flex-start;
   }
   .gp-smaller-title{
-    /*width: 200px;*/
   }
   .ground-profile-viewer{
     display: flex;
@@ -1806,25 +1469,19 @@
   }
   .signup-body{
     height: 90vh;
-    /*width: 290px;*/
     display: flex;
     padding: 2%;
     justify-content: space-between;
     flex-direction: column;
     align-items: center;
-    /*text-align: center;*/
-    /*margin: auto;*/
   }
   .signup-textboxes-holder{
     display: flex;
     flex-direction: column;
-    /*justify-content: center;*/
     align-items: center;
-    /*background-color: #dedede;*/
     background: #e9ecef;
     border-radius: 20px;
     padding: 30px;
-    /*width: 350px;*/
     margin: 10px;
   }
   .signin-background{
@@ -1838,9 +1495,7 @@
   .signin-textboxes-holder{
     display: flex;
     flex-direction: column;
-    /*justify-content: center;*/
     align-items: center;
-    /*background-color: #dedede;*/
     background: #e9ecef;
     border-radius: 20px;
     padding: 30px;
@@ -1859,10 +1514,6 @@
     z-index: 5;
   }
 }
-/*.background-color-green{
-  background-color:#50D890; 
-  /*background-color:orange; */
-}*/
 .background-color-red1{
   background: #F55C47;
 }
@@ -1907,8 +1558,6 @@
   padding: 2%;
   display: flex;
   flex-direction: column;
-  /*justify-content: center;*/
-  /*align-items: center;*/
 }
 
 .home-body{
@@ -1917,9 +1566,6 @@
 .pointer{
     cursor: pointer;
 }
-/*.res-cancel-btn{
-  width: 20%;
-}*/
 .home-reservation-post-info-holder{
     display: flex;
     flex-direction: column;
@@ -2018,22 +1664,6 @@
     flex-direction: column;
     padding-top: auto;
 }
-/*.login-body{
-    border-radius: 5%;
-    border-style: solid;
-    border-width: 1;
-    border-color: lightgray;
-    height: 90vh;
-    width: 290px;
-    display: flex;
-    padding: 6% 4%;
-    justify-content: space-between;
-    flex-direction: column;
-    align-content: center;
-    align-items: center;
-    text-align: center;
-    margin: auto;
-}*/
 /*------------------------------------SIGNUP--------------------------------*/
 .signup-container{
   display:flex; 
@@ -2328,8 +1958,6 @@
 }
 .options-list-a:hover {
     text-decoration: none;
-    /*color: black;*/
-    /*background-color: lightgray;*/
 }
 .cancel-btn:visited {
     color: white;

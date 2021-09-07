@@ -10,7 +10,8 @@
 			<div class="favorite-grounds-holder">
 				<% if @favorite_grounds != []%>
 					<% @favorite_grounds.each do |fav_ground| %>
-						<div class="favorite-ground-post col-lg-4 col-sm-12" style="color:white;">
+					<div class="col-lg-4 col-sm-12" style="padding:5px">
+						<div class="favorite-ground-post" style="color:white;">
 							<div class="ground-result-post-title">
 								<% ground_name = fav_ground.ground_name %>
 								<span><%= ground_name[0..15] %></span>
@@ -26,6 +27,7 @@
 								<%= link_to 'VISIT', fav_ground, class: "btn btn-success cancel-btn"%>
 							</div>
 						</div>
+					</div>
 					<% end %>
 				<% elsif @favorite_grounds == [] %>
 					<h3>YOU HAVE NO FAVORITE GROUNDS SELECTED</h3>

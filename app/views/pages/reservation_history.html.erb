@@ -18,34 +18,42 @@
 			</div>
 			<div class="reservations-history-holder">
 				<% if @active_reservations_history %>
-					<% @active_reservations_history.each do |res_history| %>
-							<div class="reservations-history-post col-lg-4 col-sm-12" style="color:white;">
+					<% @active_reservations_history.each do |resservation_history_hash| %>
+						<div class="col-lg-4 col-sm-12" style="padding:5px">
+							<div class="reservations-history-post" style="color:white;">
 								<div class="reservations-history-post-info-holder">
-									<div class="reservations-history-ground-name">
-										<%= res_history[:ground_name]%>
-									</div>
+									<% if resservation_history_hash[:history_for] == "ground"%>
+										<div class="reservations-history-ground-name">
+											<%= resservation_history_hash[:username]%>
+										</div>
+									<% else %>
+										<div class="reservations-history-ground-name">
+											<%= resservation_history_hash[:ground_name]%>
+										</div>
+									<% end %>
 									<div class="reservations-history-post-datetime-holder">
 										<div class="reservations-history-date">
-											<span class="reservations-history-small-title">Date:</span><%= res_history[:reservation_date] %>
+											<span class="reservations-history-small-title">Date:</span><%= resservation_history_hash[:reservation_date] %>
 										</div> 
 
 										<div class="reservations-history-time">
-											<span class="reservations-history-small-title">Starts At:</span><%= res_history[:startingtime] %>
+											<span class="reservations-history-small-title">Starts At:</span><%= resservation_history_hash[:startingtime] %>
 										</div>	
 
 										<div class="reservations-history-time">
-											<span class="reservations-history-small-title">Created On:</span><%= res_history[:created_at] %>
+											<span class="reservations-history-small-title">Created On:</span><%= resservation_history_hash[:created_at] %>
 										</div>	
 
 										<div class="reservations-history-time">
-											<span class="reservations-history-small-title">Cost:</span>₹<%= res_history[:cost] %>
+											<span class="reservations-history-small-title">Cost:</span>₹<%= resservation_history_hash[:cost] %>
 										</div>	
 									</div>	
 									<div class="submit-div">
-										<%= link_to 'VISIT GROUND', res_history[:ground_obj], class: "btn btn-success cancel-btn reservations-history-res-btn" %>
+										<%= link_to 'VISIT GROUND', resservation_history_hash[:ground_obj], class: "btn btn-success cancel-btn reservations-history-res-btn" %>
 									</div>
 								</div>
 							</div>
+						</div>
 					<% end %>
 				<% end %>
 			</div>
@@ -58,31 +66,39 @@
 			</div>
 			<div class="reservations-history-holder">
 				<% if @inactive_reservations_history %>
-					<% @inactive_reservations_history.each do |res_history| %>
-							<div class="reservations-history-post col-lg-4 col-sm-12" style="color:white;">
+					<% @inactive_reservations_history.each do |resservation_history_hash| %>
+						<div class="col-lg-4 col-sm-12" style="padding:5px">
+							<div class="reservations-history-post" style="color:white;">
 								<div class="reservations-history-post-info-holder">
-									<div class="reservations-history-ground-name" >
-										<%= res_history[:ground_name]%>
-									</div>
+									<% if resservation_history_hash[:history_for] == "ground"%>
+										<div class="reservations-history-ground-name" >
+											<%= resservation_history_hash[:username]%>
+										</div>
+									<% else %>
+										<div class="reservations-history-ground-name" >
+											<%= resservation_history_hash[:ground_name]%>
+										</div>
+									<% end %>
 									<div class="reservations-history-post-datetime-holder">
-										<div class="reservations-history-date"><span class="reservations-history-small-title">Date:</span><%= res_history[:reservation_date] %></div> 
+										<div class="reservations-history-date"><span class="reservations-history-small-title">Date:</span><%= resservation_history_hash[:reservation_date] %></div> 
 
-										<div class="reservations-history-time"><span class="reservations-history-small-title">Starts At:</span><%= res_history[:startingtime] %></div>	
+										<div class="reservations-history-time"><span class="reservations-history-small-title">Starts At:</span><%= resservation_history_hash[:startingtime] %></div>	
 
-										<div class="reservations-history-time"><span class="reservations-history-small-title">Created On:</span><%= res_history[:created_at] %></div>
+										<div class="reservations-history-time"><span class="reservations-history-small-title">Created On:</span><%= resservation_history_hash[:created_at] %></div>
 
 										<div class="reservations-history-time">
-											<span class="reservations-history-small-title">Cost:</span>₹<%= res_history[:cost] %>
+											<span class="reservations-history-small-title">Cost:</span>₹<%= resservation_history_hash[:cost] %>
 										</div>
 
 
-										<!-- <div class="reservations-history-time"><span class="reservations-history-small-title">Cost:</span><%= res_history[:created_at] %></div>	 -->
+										<!-- <div class="reservations-history-time"><span class="reservations-history-small-title">Cost:</span><%= resservation_history_hash[:created_at] %></div>	 -->
 									</div>	
 									<div class="submit-div">
-										<%= link_to 'VISIT GROUND', res_history[:ground_obj], class: "btn btn-success cancel-btn reservations-history-res-btn" %>
+										<%= link_to 'VISIT GROUND', resservation_history_hash[:ground_obj], class: "btn btn-success cancel-btn reservations-history-res-btn" %>
 									</div>
 								</div>
 							</div>
+						</div>
 					<% end %>
 				<% end %>
 			</div>	

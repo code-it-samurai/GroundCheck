@@ -27,12 +27,12 @@
           </div>
           <div class="jumbotron-btn-div">
             <% if @favorite %>
-              <%= link_to "Remove Favorite", remove_favorites_path(ground_id: @current_ground_id), method: :delete, class:"btn btn-secondary cancel-btn"%>
+              <%= link_to "Remove Favorite", remove_favorites_path(ground_id: @current_ground_id), method: :delete, class:"btn btn-secondary cancel-btn jumbotron-btn"%>
             <% else %>
-              <%= link_to "Add to Favorites", add_favorites_path(ground_id: @current_ground_id), method: :post, class:"btn btn-success cancel-btn"%>
+              <%= link_to "Add to Favorites", add_favorites_path(ground_id: @current_ground_id), method: :post, class:"btn btn-success cancel-btn jumbotron-btn"%>
             <% end %>
             <% if @user_owns_this_ground %>
-                <%= button_tag "Options", onclick:"document.getElementById('mymodal').style.display='block'", class:"btn btn-success"%>
+                <%= button_tag "Options", onclick:"document.getElementById('mymodal').style.display='block'", class:"btn btn-success jumbotron-btn"%>
             <% end %>
           </div>
         </div>

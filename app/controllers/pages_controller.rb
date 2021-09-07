@@ -6,7 +6,11 @@ class PagesController < ApplicationController
 		if(user_signed_in?)
 			@current_user_reservations = []
 			@current_user_interests = []
-
+			@active = ACTIVE_STATUS
+			@inactive = INACTIVE_STATUS
+			@play_on = PLAY_ON_STATUS
+			@checked_in = CHECKED_IN_STATUS
+			@hour_left = HOUR_LEFT_STATUS
 			# FINDING AND STORING INTERESTS
 			begin
 				UserSportsMaster.where(user_id: current_user.id).find_each do |user_sports_master_object|
@@ -27,36 +31,35 @@ class PagesController < ApplicationController
 					res_starting_time = Time.at(reservation_object.starting_time)
 					res_finishing_time = Time.at(reservation_object.finishing_time)
 					starting_time_minus_hour = Time.parse("#{res_starting_time.hour - 1}:#{res_starting_time.min} #{res_starting_time.strftime("%d/%m/%Y")}")
-					if res_finishing_time < @current_date_time and (reservation_object.status == ACTIVE_STATUS or reservation_object.status == HOUR_LEFT_STATUS or reservation_object.status == PLAY_ON_STATUS or reservation_object.status == CHECKED_IN_STATUS )
-						status = INACTIVE_STATUS
-					elsif starting_time_minus_hour < @current_date_time and reservation_object.status == ACTIVE_STATUS
-						status = HOUR_LEFT_STATUS
-					elsif res_starting_time < @current_date_time and res_finishing_time > @current_date_time and (reservation_object.status == ACTIVE_STATUS or reservation_object.status == HOUR_LEFT_STATUS or reservation_object.status == CHECKED_IN_STATUS)
-						status = PLAY_ON_STATUS
-					elsif reservation_object.status == ACTIVE_STATUS or reservation_object.status == HOUR_LEFT_STATUS or reservation_object.status == PLAY_ON_STATUS or reservation_object.status == CHECKED_IN_STATUS					
-						status = "OTHER_THAN_INACTIVE"
-					end						
 
-					case status
-					when INACTIVE_STATUS
+					# saving boolean values of conditions for all the statuses
+					inactive_conditions = res_finishing_time < @current_date_time and (reservation_object.status == ACTIVE_STATUS or reservation_object.status == HOUR_LEFT_STATUS or reservation_object.status == PLAY_ON_STATUS or reservation_object.status == CHECKED_IN_STATUS )
+					play_on_conditions = res_starting_time < @current_date_time and res_finishing_time > @current_date_time and (reservation_object.status == ACTIVE_STATUS or reservation_object.status == HOUR_LEFT_STATUS)
+					hour_left_condidions = starting_time_minus_hour < @current_date_time and reservation_object.status == ACTIVE_STATUS
+					other_than_inactive_conditions = reservation_object.status != INACTIVE_STATUS
+
+					# case is true because when a condition is true it will make a match and execute the code
+					case true
+					when inactive_conditions
 						deactivate_reservation = Reservation.find(reservation_object.id)
 						deactivate_reservation.update({:status => INACTIVE_STATUS})
-					when HOUR_LEFT_STATUS
-						hour_left_reservation = Reservation.find(reservation_object.id)
-						hour_left_reservation.update({:status => HOUR_LEFT_STATUS})
-						ground_name = Ground.find(reservation_object[:ground_id]).ground_name
-						activity_name = SportsMaster.find(reservation_object[:sports_master_id]).name
-						@current_user_reservations.append({:obj => reservation_object,:ground_name => ground_name,:startingtime => Time.at(reservation_object[:starting_time]).to_time.strftime("%I:%M %p"),:reservation_date => reservation_object[:date].to_formatted_s(:short),:reserved_activity => activity_name})
-					when PLAY_ON_STATUS
+					when play_on_conditions
 						play_on_reservation = Reservation.find(reservation_object.id)										
 						play_on_reservation.update({:status => PLAY_ON_STATUS})
 						ground_name = Ground.find(reservation_object[:ground_id]).ground_name
 						activity_name = SportsMaster.find(reservation_object[:sports_master_id]).name
-						@current_user_reservations.append({:obj => reservation_object,:ground_name => ground_name,:startingtime => Time.at(reservation_object[:starting_time]).to_time.strftime("%I:%M %p"),:reservation_date => reservation_object[:date].to_formatted_s(:short),:reserved_activity => activity_name})						
-					when "OTHER_THAN_INACTIVE"
+						@current_user_reservations.append({:obj => reservation_object,:status => PLAY_ON_STATUS, :ground_name => ground_name,:startingtime => Time.at(reservation_object[:starting_time]).to_time.strftime("%I:%M %p"),:reservation_date => reservation_object[:date].to_formatted_s(:short),:reserved_activity => activity_name})						
+					when hour_left_condidions
+						hour_left_reservation = Reservation.find(reservation_object.id)
+						hour_left_reservation.update({:status => HOUR_LEFT_STATUS})
 						ground_name = Ground.find(reservation_object[:ground_id]).ground_name
 						activity_name = SportsMaster.find(reservation_object[:sports_master_id]).name
-						@current_user_reservations.append({:obj => reservation_object,:ground_name => ground_name,:startingtime => Time.at(reservation_object[:starting_time]).to_time.strftime("%I:%M %p"),:reservation_date => reservation_object[:date].to_formatted_s(:short),:reserved_activity => activity_name})											
+						@current_user_reservations.append({:obj => reservation_object, :status => HOUR_LEFT_STATUS, :ground_name => ground_name,:startingtime => Time.at(reservation_object[:starting_time]).to_time.strftime("%I:%M %p"),:reservation_date => reservation_object[:date].to_formatted_s(:short),:reserved_activity => activity_name})
+					when other_than_inactive_conditions
+						random_reservation = Reservation.find(reservation_object.id)
+						ground_name = Ground.find(reservation_object[:ground_id]).ground_name
+						activity_name = SportsMaster.find(reservation_object[:sports_master_id]).name
+						@current_user_reservations.append({:obj => reservation_object, :status =>reservation_object.status, :ground_name => ground_name,:startingtime => Time.at(reservation_object[:starting_time]).to_time.strftime("%I:%M %p"),:reservation_date => reservation_object[:date].to_formatted_s(:short),:reserved_activity => activity_name})											
 					end						
 				end	
 			end
@@ -135,7 +138,6 @@ class PagesController < ApplicationController
 		end
 
 		# HISTORY FOR USER
-		
 		if(params[:history_for] == "user")
 			@active_reservations_history =[]
 			@inactive_reservations_history = []
@@ -144,7 +146,7 @@ class PagesController < ApplicationController
 					ground_object = Ground.find(reservation_object[:ground_id])
 					ground_name = ground_object.ground_name
 					activity_name = SportsMaster.find(reservation_object[:sports_master_id]).name
-					reservation_info = {:ground_obj => ground_object,:obj => reservation_object,:ground_name => ground_name,:startingtime => Time.at(reservation_object[:starting_time]).to_time.strftime("%I:%M %p"),:reservation_date => reservation_object[:date].strftime("%d/%m/%Y"),:reserved_activity => activity_name, :created_at => reservation_object[:created_at].strftime("%d/%m/%Y")}
+					reservation_info = {:history_for => "user",:ground_obj => ground_object,:obj => reservation_object,:ground_name => ground_name,:startingtime => Time.at(reservation_object[:starting_time]).to_time.strftime("%I:%M %p"),:reservation_date => reservation_object[:date].strftime("%d/%m/%Y"),:reserved_activity => activity_name, :created_at => reservation_object[:created_at].strftime("%d/%m/%Y")}
 					if reservation_object[:cost] != nil
 						reservation_info[:cost]= reservation_object[:cost]
 					end
@@ -153,7 +155,7 @@ class PagesController < ApplicationController
 					ground_object = Ground.find(reservation_object[:ground_id])
 					ground_name = ground_object.ground_name
 					activity_name = SportsMaster.find(reservation_object[:sports_master_id]).name
-					reservation_info = {:ground_obj => ground_object,:obj => reservation_object,:ground_name => ground_name,:startingtime => Time.at(reservation_object[:starting_time]).to_time.strftime("%I:%M %p"),:reservation_date => reservation_object[:date].strftime("%d/%m/%Y"),:reserved_activity => activity_name, :created_at => reservation_object[:created_at].strftime("%d/%m/%Y")}
+					reservation_info = {:history_for => "user",:ground_obj => ground_object,:obj => reservation_object,:ground_name => ground_name,:startingtime => Time.at(reservation_object[:starting_time]).to_time.strftime("%I:%M %p"),:reservation_date => reservation_object[:date].strftime("%d/%m/%Y"),:reserved_activity => activity_name, :created_at => reservation_object[:created_at].strftime("%d/%m/%Y")}
 					if reservation_object[:cost] != nil
 						reservation_info[:cost]= reservation_object[:cost]
 					end
@@ -167,21 +169,22 @@ class PagesController < ApplicationController
 			@current_ground_id = params[:ground_id]
 			Reservation.where(ground_id: @current_ground_id).find_each do |reservation_object|
 				if reservation_object[:status] == ACTIVE_STATUS or reservation_object[:status] == HOUR_LEFT_STATUS or reservation_object[:status] == PLAY_ON_STATUS or reservation_object[:status] == CHECKED_IN_STATUS
+					username = User.find(reservation_object[:user_id]).username
 					ground_object = Ground.find(reservation_object[:ground_id])
 					ground_name = ground_object.ground_name
-					ground_owner = ground_object.user_id
 					activity_name = SportsMaster.find(reservation_object[:sports_master_id]).name
-					reservation_info = {:user_obj => ground_owner, :ground_obj => ground_object,:obj => reservation_object,:ground_name => ground_name,:startingtime => Time.at(reservation_object[:starting_time]).to_time.strftime("%I:%M %p"),:reservation_date => reservation_object[:date].strftime("%d/%m/%Y"),:reserved_activity => activity_name, :created_at => reservation_object[:created_at].strftime("%d/%m/%Y")}
+					reservation_info = {:history_for => "ground",:username => username, :ground_obj => ground_object,:obj => reservation_object,:ground_name => ground_name,:startingtime => Time.at(reservation_object[:starting_time]).to_time.strftime("%I:%M %p"),:reservation_date => reservation_object[:date].strftime("%d/%m/%Y"),:reserved_activity => activity_name, :created_at => reservation_object[:created_at].strftime("%d/%m/%Y")}
 					if reservation_object[:cost] != nil
 						reservation_info[:cost]= reservation_object[:cost]
 					end
 					@active_reservations_history.append(reservation_info)
 				elsif reservation_object[:status] == INACTIVE_STATUS
 					ground_object = Ground.find(reservation_object[:ground_id])
+					username = User.find(reservation_object[:user_id]).username
 					ground_name = ground_object.ground_name
 					ground_owner = ground_object.user_id
 					activity_name = SportsMaster.find(reservation_object[:sports_master_id]).name
-					reservation_info = {:user_obj => ground_owner, :ground_obj => ground_object,:obj => reservation_object,:ground_name => ground_name,:startingtime => Time.at(reservation_object[:starting_time]).to_time.strftime("%I:%M %p"),:reservation_date => reservation_object[:date].strftime("%d/%m/%Y"),:reserved_activity => activity_name, :created_at => reservation_object[:created_at].strftime("%d/%m/%Y")}
+					reservation_info = {:history_for => "ground",:username => username, :ground_obj => ground_object,:obj => reservation_object,:ground_name => ground_name,:startingtime => Time.at(reservation_object[:starting_time]).to_time.strftime("%I:%M %p"),:reservation_date => reservation_object[:date].strftime("%d/%m/%Y"),:reserved_activity => activity_name, :created_at => reservation_object[:created_at].strftime("%d/%m/%Y")}
 					if reservation_object[:cost] != nil
 						reservation_info[:cost]= reservation_object[:cost]
 					end
