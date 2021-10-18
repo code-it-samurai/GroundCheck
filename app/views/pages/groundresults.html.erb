@@ -1,9 +1,9 @@
-<div >
+<div class="ground-result-background">
 	<%= render 'pages/header'%>
 	<div class="groundresults-body">
 		
 		<div class="ground-results-viewer">
-			<div class="jumbotron jumbotron-fluid w-100">
+			<div class="custom-jumbotron w-100">
 			  <div class="container">
 			  	<% searchword = @searchword %>
 			    <h1 class=" main-title">
@@ -14,20 +14,22 @@
 			</div>
 			<div class="ground-results-holder">
 				<% @results.each do |ground| %>
-					<div class="ground-result-post">
-						<div class="ground-result-post-title">
-							<% ground_name = ground.ground_name %>
-							<span><%= ground_name[0..15] %></span>
-						</div>
-						<% if ground.location %>
-							<div>
-								<div class="ground-result-post-subtitle">Location:</div>
-								<% ground_location = ground.location%>
-								<div><%= ground_location[0..50] %></div>
+					<div class="col-lg-4 col-sm-12" style="padding:5px">
+						<div class="ground-result-post">
+							<div class="ground-result-post-title">
+								<% ground_name = ground.ground_name %>
+								<span><%= ground_name[0..15] %></span>
 							</div>
-						<% end %>
-						<div>
-							<%= link_to 'RESERVE', ground, class: "btn btn-success cancel-btn"%>
+							<% if ground.location %>
+								<div>
+									<div class="ground-result-post-subtitle">Location:</div>
+									<% ground_location = ground.location%>
+									<div><%= ground_location[0..40] %></div>
+								</div>
+							<% end %>
+							<div>
+								<%= link_to 'VISIT', ground, class: "btn btn-success cancel-btn"%>
+							</div>
 						</div>
 					</div>
 				<% end %>

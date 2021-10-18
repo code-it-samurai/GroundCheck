@@ -6,17 +6,15 @@
 
 	<div class="nav-stuff">
 		<%= form_with url: "/groundresults", method: :get, class:"search-form" do |form| %>
-		  <%= form.text_field :search_word, placeholder: "search grounds", ondrop:"return false;", onpaste:"return false;", onkeypress:"return (event.charCode>=97 && event.charCode<=122) || (event.charCode>=48 && event.charCode<=57)", class: "search-bar form-control mr-sm-2" %>
+		  <%= form.text_field :search_word, placeholder: "search grounds", ondrop:"return false;", onpaste:"return false;", onkeypress:"return (event.charCode>=97 && event.charCode<=122) || (event.charCode>=48 && event.charCode<=57) || (event.charCode>=65 && event.charCode<=90) || event.charCode == 32", class: "search-bar form-control mr-sm-2" %>
 		  <%= form.submit "Search", class: "btn btn-success search-button cancel-btn" %>
 		<% end %>
 	</div>
-
 	<div class="favorite-btn-div">
 		<a href="/favorites_list">
 			<%= image_tag "star.png", height: "20px" %>
 		</a>
 	</div>
-
 </nav>
 <div id="mySidebar" class="sidebar">
 	<div>
@@ -28,8 +26,11 @@
 		</div>
 		<%= link_to "Home", root_path %>
 		<%= link_to "Reservation History", reservation_history_path("history_for": "user") %>
-		<%= link_to "My Grounds", my_grounds_path %>
-		<%= link_to "Create Your Ground", new_ground_path %>
+		<% if !current_user.ground_owner %>
+			<%= link_to "Create Your Ground", new_ground_path %>
+		<% end %>
+		<!-- <span><%= link_to "My Grounds", my_grounds_path %></span> -->
+		
 		<%= link_to "Edit Your Profile", edit_user_path(current_user.id) %>
 		<%= link_to "About", about_path %>
 	</div>

@@ -1,10 +1,16 @@
-<% if user_signed_in? %>
-	<%= render 'pages/header'%>
+<% if @sus_user %>
+	<% controller.redirect_to root_path, notice: "Unauthorized Access" %>
 <% else %>
-	<%= render 'pages/guestnave'%>
+	<div class="user-profile-edit-background">
+		<% if user_signed_in? %>
+		<%= render 'pages/header'%>
+		<% else %>
+			<%= render 'pages/guestnave'%>
+		<% end %>
+
+		<%= render 'form', user: @user %>
+
+		<%= link_to 'Show', @user %> |
+		<%= link_to 'Back', users_path %>
+	</div>
 <% end %>
-
-<%= render 'form', user: @user %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>

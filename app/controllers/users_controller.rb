@@ -1,23 +1,42 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
-
+  #hello world
   # GET /users or /users.json
   def index
     @users = User.all
   end
 
+  def get_all_available_activities
+    all_activities = []
+    all_activity_objects = SportsMaster.all
+    all_activity_objects.each do |activity_obj|
+      all_activities.append(activity_obj.name)
+    end
+    return all_activities
+  end
+
   # GET /users/1 or /users/1.json
   def show
+    @sus_user = false
+    if current_user.id != @user.id
+      @sus_user = true
+    end
+
   end
 
   # GET /users/new
   def new
     @user = User.new
-    @all_activities = ['Football', 'Basket Ball', 'Cricket', 'Chess', 'Volley Ball', 'Table Tennis', 'Tennis', 'Badminton']
   end
 
   # GET /users/1/edit
   def edit
+    @sus_user = false
+    if(user_signed_in?)
+      if current_user.id != @user.id
+        @sus_user = true
+      end
+    end
     @available_activities = []
     user_sports_master = UserSportsMaster.where(user_id: @user.id)
     user_sports_master.each do |usm|
@@ -26,18 +45,16 @@ class UsersController < ApplicationController
         @available_activities.append(activity_name)
       end
     end
-    @all_activities = ['Football', 'Basket Ball', 'Cricket', 'Chess', 'Volley Ball', 'Table Tennis', 'Tennis', 'Badminton']
   end
 
   # POST /users or /users.json
   def create
-    # render plain: "#{params[:user]}"
     @user = User.new(user_params)
-    
+    @user.save
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: "User was successfully created." }
+        format.html { redirect_to @user, notice: "Your profile was successfully created." }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -69,7 +86,6 @@ class UsersController < ApplicationController
         end
       end
     end
-    # render plain: " #{@sports_master.id} #{@user.id} #{UserSportsMaster.where(user_id: @user.id, sports_master_id: @sports_master.id).length}"
 
     respond_to do |format|
       if @user.update(user_params)
@@ -96,6 +112,8 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+
+      # Getting names of all the activities user is interested in in an array
       @available_activities = []
       user_sports_master = UserSportsMaster.where(user_id: @user.id)
       user_sports_master.each do |usm|
@@ -104,6 +122,8 @@ class UsersController < ApplicationController
           @available_activities.append(activity_name)
         end
       end
+      # Getting the names of all the activities in sports master inside an array
+      @all_activities = get_all_available_activities()
     end
 
     # Only allow a list of trusted parameters through.

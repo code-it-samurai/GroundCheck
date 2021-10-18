@@ -1,5 +1,4 @@
 	<div class= "home-container" id="home">
-
 	<% if user_signed_in? %>
 	<%= render 'pages/header'%>
 		<div class="home-body">
@@ -25,24 +24,33 @@
 				</div>
 			</div>
 		<% end %>
-		<div class="jumbotron jumbotron-fluid">
+		<div class="custom-jumbotron">
 		  <div class="container">
 		    <h1 class=" main-title">GROUNDCHECK</h1>
 		    <p class="lead-title">Welcome <%= current_user.name %>, make reservations and stay at the top of your game.</p>
 		  </div>
 		</div>
-			<div class="reservations-viewer jumbotron jumbotron-fluid">
-				<div class="container justify-center">
+			<div class="reservations-viewer custom-jumbotron">
+				<div class="container">
 					<h2 class="secondary-title">RESERVATIONS</h2>
-					<!-- <h1><%= @current_user_reservations.inspect %></h1> -->
 					<div class="reservations-holder">
 					<% if @current_user_reservations %>
 						<% @current_user_reservations.each do |reservation| %>
-								<div class="home-reservation-post">
+							<div class="col-lg-3 col-sm-12" style="padding-right:2px; padding-left: 2px;">
+								<% case reservation[:status] %>
+									<% when @active %>
+										<div class="home-reservation-post want-tooltip" title="<%=reservation[:obj].status.upcase %>" style="background:#56776C">
+									<% when @hour_left %>
+										<div class="home-reservation-post want-tooltip" title="<%=reservation[:obj].status.upcase %>" style="background:#22577A">
+									<% when @play_on %>
+										<div class="home-reservation-post want-tooltip" title="<%=reservation[:obj].status.upcase %>" style="background:#F55C47">
+									<% when @checked_in %>
+										<div class="home-reservation-post want-tooltip" title="<%=reservation[:obj].status.upcase %>" style="background:#50D890">
+								<% end %>
 									<div class="home-reservation-post-info-holder">
 										<div class="home-reservation-ground-name">
-											<% if reservation[:ground_name].length > 15 %>
-												<%= reservation[:ground_name][0..14]+".." %>
+											<% if reservation[:ground_name].length > 13 %>
+												<%= reservation[:ground_name][0..12]+".." %>
 											<%else%>
 												<%= reservation[:ground_name]%>
 											<%end%>
@@ -56,27 +64,66 @@
 										</div>	
 									</div>
 									<div>
-										<!-- <%= link_to 'CANCEL', reservation[:obj], method: :delete, class: "btn btn-danger cancel-btn", data: { confirm: 'Are you sure?' } %> -->
-											<%= link_to image_tag("delete.png",height: "25px", color:"orange"), cancelreservation_path(id: reservation[:obj].id), method: :post, class: "want-tooltip cancel-btn res-cancel-btn", data: { confirm: 'Are you sure?' }, "title":"CANCEL" %>
+										<%= link_to image_tag("delete.png",height: "25px", color:"orange"), cancelreservation_path(id: reservation[:obj].id), method: :post, class: "want-tooltip cancel-btn res-cancel-btn", data: { confirm: 'Are you sure?' }, "title":"CANCEL" %>
 									</div>
-									<!-- image_tag("delete.png",height: "40px", color:"orange") -->
 								</div>
+							</div>
 						<% end %>
 					<% end %>
 					<% if @current_user_reservations != nil and @current_user_reservations.length == 0 %>
 						<p class="no-reservation-notice">
 							WOW, CURRENTLY YOU HAVE NO RESERVATIONS
 						</p>
-						<div class="submit-div">
+						<!-- <div class="submit-div">
 							<%= link_to "SHOW GROUNDS", groundresults_path, class: "btn btn-success cancel-btn" %>
-						</div>
+						</div> -->
 					<% end %>
 					</div>
 				</div>
 			</div>
-
+			<% if current_user.ground_owner %>
+				<div class="reservations-viewer custom-jumbotron">
+					<div class="container">
+						<h2 class="secondary-title">GROUND ADMINISTRATION</h2>
+						<div class="admin-reservations-holder">
+							<% if @owned_ground_reservations %>
+								<% @owned_ground_reservations.each do |reservation| %>
+									<div class="col-lg-4 col-sm-12">
+										<div class="home-ground-admin-post">
+											<div class="home-reservation-post-info-holder">
+												<div class="home-admin-user-name">
+													<% if reservation[:username].length > 15 %>
+														<%= reservation[:username][0..14]+".." %>
+													<%else%>
+														<%= reservation[:username]%>
+													<%end%>
+												</div>
+												<div class="home-admin-reservation-activity">
+													<%= reservation[:reserved_activity] %>
+													<%= reservation[:obj].status %>
+												</div>
+												<div class="home-reservation-post-datetime-holder">
+													<div class="home-reservation-date"><%= reservation[:reservation_date] %></div> 
+													<div class="home-reservation-time"><%= reservation[:startingtime] %></div>	
+												</div>	
+												<div class="home-admin-reservation-btn-holder">
+													<% if reservation[:obj].status != "checked_in" %>
+														<%= link_to "Check In", check_in_client_path(id: reservation[:obj].id), method: :post, class: "check-in-btn cancel-btn" ,data: { confirm: 'Are you sure?' } %>
+													<% else %>
+														<%= link_to "Checked In", check_in_client_path(id: reservation[:obj].id), method: :post, class: "checked-in-btn", disabled:true ,data: { confirm: 'Are you sure?' } %>
+													<% end %>
+												</div>
+											</div>
+										</div>
+									</div>
+								<% end %>
+							<% end %>
+						</div>
+					</div>
+				</div>
+			<% end %>
 				
-			<div class="user-interest-holder  jumbotron jumbotron-fluid">
+			<div class="user-interest-holder custom-jumbotron">
 				<div class="container">
 					<h3 class="secondary-title">YOUR INTERESTS</h3>
 
@@ -90,11 +137,9 @@
 				</div>
 			</div>
 		<% else %>
-			<div class="home-guest-main-div">
+			<div class="home-guest-main-div background-front-image">
 				<%= render 'pages/guestnave'%>
-				
-				
-				<div class="home-guest-body">
+				<div class="home-guest-body ">
 					<% if notice %>
 						<div class="welcome-note-container">
 							<div class="home-welcome-note">
@@ -112,16 +157,16 @@
 							</div>
 						</div>
 					<% end %>
-					<div class="jumbotron jumbotron-fluid">
+					<div class="custom-jumbotron " style="height:100%; background:transparent; color:white">
 					  <div class="container">
 					    <h1 class=" main-title">GROUNDCHECK</h1>
 					    <p class="lead-title">
 					    	Welcome to GroundCheck, please sign up or sign in to use our services
 					    </p>
 					    <p>
-					    	<div class="submit-div" style="margin-top: 30px;">
-									<%= link_to "Sign In", new_user_session_path, class:"btn btn-success cancel-btn sign-up-in-btn"%>
-									<%= link_to "Sign Up",  new_user_registration_path, class:"btn btn-success cancel-btn sign-up-in-btn"%>
+					    	<div class="home-btn-holder">
+									<%= link_to "Sign In", new_user_session_path, class:" cancel-btn sign-in-btn"%>
+									<%= link_to "Sign Up",  new_user_registration_path, class:"cancel-btn sign-up-btn"%>
 								</div>	
 					    </p>
 					  </div>

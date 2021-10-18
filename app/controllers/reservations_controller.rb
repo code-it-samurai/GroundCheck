@@ -23,34 +23,37 @@ class ReservationsController < ApplicationController
 
   # POST /reservations or /reservations.json
   def create
-    # render plain: "#{params}"
     # PARSING AND CONFIGURING FOR SUITABLE STORAGE FORMAT
+    # DATE
     received_date, received_time = params[:date_time].split("=")
-    processed_date = Date.parse(received_date)
-    # render plain: "#{received_date} #{received_time} #{params[:date_time]}"
     received_time = received_time.split("-")[0]
-    processed_start_time, processed_finish_time = received_time.split("to")
 
+    # TIME
+    processed_date = Date.parse(received_date)
+    processed_start_time, processed_finish_time = received_time.split("to")
     processed_start_time = Time.parse("#{processed_start_time} #{processed_date}").to_i
     processed_finish_time = Time.parse("#{processed_finish_time} #{processed_date}").to_i
         
+    # USER
     res_user_id = params[:user_id]
+
+    # GROUND
     res_ground_id = params[:ground_id]
+
+    # ACTIVITY
     sports_master_record = SportsMaster.where(name: params[:selected_activity])[0]
-    res_sports_master_id = sports_master_record.id
-    res_cost = params[:cost]
+    reservation_sports_master_id = sports_master_record.id
+    reservation_cost = params[:cost]
+
     # COLLECTING ALL CONFIGURED PARAMS
-    res_params = {:date => processed_date, :user_id => res_user_id, :ground_id => res_ground_id, :sports_master_id => res_sports_master_id, :starting_time => processed_start_time, :finishing_time => processed_finish_time, :active => true, :cost => res_cost}
+    reservation_info = {:date => processed_date, :user_id => res_user_id, :ground_id => res_ground_id, :sports_master_id => reservation_sports_master_id, :starting_time => processed_start_time, :finishing_time => processed_finish_time, :cost => reservation_cost}
     @ground = Ground.find(res_ground_id)
-    @reservation = Reservation.new(res_params)    
-    # render plain: "#{res_params}"
+    @reservation = Reservation.new(reservation_info)    
     respond_to do |format|
       if @reservation.save
-        format.html { redirect_to root_path, notice: "Reservation was successfully created." }
-        format.json { render :show, status: :created, location: @reservation }
+        format.html { redirect_to root_path, notice: "Reservation was successfully created. Refresh to see latest updates on your reservations." }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @reservation.errors, status: :unprocessable_entity }
+        format.html { redirect_to root_path, notice: :unprocessable_entity }
       end
     end
   end
@@ -75,10 +78,6 @@ class ReservationsController < ApplicationController
       format.html { redirect_to root_path, notice: "Reservation was successfully destroyed." }
       format.json { head :no_content }
     end
-  end
-
-  def destroyall
-    Reservation.delete_all
   end
 
   private

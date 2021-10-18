@@ -11,7 +11,7 @@
       </div>
     <% end %>
     <% if @ground.ground_name %>
-      <div class="jumbotron jumbotron-fluid">
+      <div class="custom-jumbotron">
         <div class="container">
           <h1 class=" main-title"><%= @ground.ground_name %></h1>
           <p class="lead-title">Profile Edit</p>
@@ -19,8 +19,8 @@
       </div>
     <% end %>
     <div class="new-ground-textboxes-holder"> 
-      <div class="textboxes-holder">
-        <div class="container">
+      <div class="textboxes-holder col-lg-3 col-sm-12">
+        <div class="container justify-center">
           <div class="tb-holder-title">Primary Info</div>
           <div class="new-ground-textbox-holder">
             <div class="new-ground-tb-lables">Ground Name</div>
@@ -51,6 +51,8 @@
             </div>
           </div>
 
+          
+
           <div class="new-ground-textbox-holder">
             <div class="new-ground-tb-lables">
               Opening Time
@@ -64,11 +66,12 @@
             </div>
             <%= form.time_select :closing_time, {:default => {:hour => '20', :minute => '00'}} %>
           </div>  
+          <p class="w-200" style="margin:auto">Note: please only select hours and not minutes.</p>
             <%= form.hidden_field :user_id, {value:current_user.id}%> 
         </div>
       </div> 
-      <div class="textboxes-holder">
-        <div class="container">
+      <div class="textboxes-holder col-lg-3 col-sm-12">
+        <div class="container justify-center">
           <div class="tb-holder-title">Contact Info</div>
           <div class="new-ground-textbox-holder">
             <div class="new-ground-tb-lables">
@@ -84,10 +87,9 @@
           </div>
         </div>
       </div>
-      <div class="textboxes-holder">
-        <div class="container">
+      <div class="textboxes-holder col-lg-3 col-sm-12">
+        <div class="container justify-center">
           <div class="tb-holder-title">Activities</div>
-          <div class="new-ground-interests">
             <div class="new-ground-interests-holder">
               <% if @all_activities %>
                 <% @all_activities.each do |activity| %>
@@ -112,7 +114,6 @@
                 <% end %>
               <% end %>
             </div>  
-          </div>
         </div>
       </div>
     </div>
